@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 /**
  *
- *@author: Jose Carlos Soto
+ *@author: Jose Soto
  */
 public class Animadora extends JPanel {
 
@@ -62,10 +62,10 @@ public class Animadora extends JPanel {
     public Animadora() {
         setSize(800, 600);
         setBackground(Color.BLACK);
-        config = media.cIcon("partes/config.png").getImage();
-        present = media.cIcon("partes/present.jpg").getImage();
-        mesa = media.cIcon("partes/mesa.png").getImage();
-        tabla1 = media.cIcon("partes/tabla1.gif").getImage();
+        config = media.cIcon("parts/config.png").getImage();
+        present = media.cIcon("parts/present.jpg").getImage();
+        mesa = media.cIcon("parts/mesa.png").getImage();
+        tabla1 = media.cIcon("parts/tabla1.gif").getImage();
         color = new Color(0, 0, 10, 190);
         Carga(1);
 

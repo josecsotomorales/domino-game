@@ -1,5 +1,5 @@
 /*
- *@author: Jose Carlos Soto
+ *@author: Jose Soto
  */
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -18,8 +18,8 @@ public class Ficha {
         this.v1 = v1;
         this.v2 = v2;
         media = new Media();
-        imf = media.cIcon("fichas/" + v1 + "-" + v2 + ".png").getImage();
-        backV = media.cIcon("fichas/backV.png").getImage();
+        imf = media.cIcon("cards/" + v1 + "-" + v2 + ".png").getImage();
+        backV = media.cIcon("cards/backV.png").getImage();
     }
 
     public int getSum() {

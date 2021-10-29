@@ -1,5 +1,5 @@
 /*
- *@author:Jose Carlos Soto
+ *@author:Jose Soto
  */
 
 import java.io.*;
@@ -30,21 +30,20 @@ public class Media {
             if (TipoSonido == 1) {
                 InputStream dirSonido = Media.class.getResourceAsStream("audio/S1.wav");
                 Clip clip = AudioSystem.getClip();
+                assert dirSonido != null;
                 clip.open(AudioSystem.getAudioInputStream(dirSonido));
                 clip.start();
 
             } else if (TipoSonido == 2) {
                 InputStream dirSonido = Media.class.getResourceAsStream("audio/S2.wav");
                 Clip clip = AudioSystem.getClip();
+                assert dirSonido != null;
                 clip.open(AudioSystem.getAudioInputStream(dirSonido));
                 clip.start();
             }
             Thread.sleep(1);
-        } catch (IOException io) {
-        } catch (InterruptedException ie) {
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
+        } catch (IOException | InterruptedException io) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException e) {
             e.printStackTrace();
         }
     }

@@ -1,5 +1,5 @@
 /*
- *@author: Jose Carlos Soto
+ *@author: Jose Soto
  */
 import java.util.ArrayList;
 public class BotaGorda extends Jugador { 

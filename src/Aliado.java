@@ -1,5 +1,5 @@
 /*
- *@author: José Carlos Soto
+ *@author: Jose Soto
  
  */
 import java.util.ArrayList;

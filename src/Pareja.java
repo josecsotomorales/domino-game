@@ -1,5 +1,5 @@
 /*
- *@author: Jose Carlos Soto
+ *@author: Jose Soto
  */
 public class Pareja {
     protected static Jugador a,u,j1,j2;

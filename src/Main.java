@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -14,19 +15,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 /**
- *@author Jose Carlos Soto
+ *@author Jose Soto
  */
 class Main extends JFrame {
 
     static String nombreU = "",  parejaSel = "";
     static int punt;
-    private Media media = new Media();
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu juego;
-    private javax.swing.JMenu ayuda;
-    private javax.swing.JSeparator sep;
+    private final Media media = new Media();
     static javax.swing.JMenuItem aDeDom;
-    private javax.swing.JMenuItem salir;
     static javax.swing.JMenuItem verP;
     static javax.swing.JMenuItem nuevoJ;
     static javax.swing.JMenuItem sucesos;
@@ -36,7 +32,7 @@ class Main extends JFrame {
     static javax.swing.JButton OK;
     private javax.swing.JTextField nombre;
     private javax.swing.JSpinner pM;
-    static javax.swing.JComboBox pareja;
+    static javax.swing.JComboBox<String> pareja;
     private static javax.swing.JTable tabla;
     private static javax.swing.JDialog dialog;
     static Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -78,7 +74,7 @@ class Main extends JFrame {
         pM.setFont(new java.awt.Font("Arial Black", 0, 40));
         pM.setModel(new javax.swing.SpinnerNumberModel(100, 10, 250, 10));
         pM.setVisible(false);
-        pareja = new javax.swing.JComboBox();
+        pareja = new javax.swing.JComboBox<String>();
         pareja.addItem("Botagorda");
         pareja.addItem("Aliado");
         pareja.addItem("Dominador");
@@ -91,15 +87,15 @@ class Main extends JFrame {
         salida = new javax.swing.JButton("Cancelar");
         OK = new javax.swing.JButton("OK");
         OK.setVisible(false);
-        sep = new javax.swing.JSeparator();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        juego = new javax.swing.JMenu();
-        ayuda = new javax.swing.JMenu();
+        javax.swing.JSeparator sep = new javax.swing.JSeparator();
+        javax.swing.JMenuBar jMenuBar1 = new javax.swing.JMenuBar();
+        javax.swing.JMenu juego = new javax.swing.JMenu();
+        javax.swing.JMenu ayuda = new javax.swing.JMenu();
         aDeDom = new javax.swing.JMenuItem();
         nuevoJ = new javax.swing.JMenuItem();
         verP = new javax.swing.JMenuItem();
         sucesos = new javax.swing.JMenuItem();
-        salir = new javax.swing.JMenuItem();
+        javax.swing.JMenuItem salir = new javax.swing.JMenuItem();
         tabla.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                     {null, null}, {null, null}, {null, null}, {null, null},
@@ -111,7 +107,7 @@ class Main extends JFrame {
                     "", ""
                 }) {
 
-            boolean[] canEdit = new boolean[]{
+            final boolean[] canEdit = new boolean[]{
                 false, false
             };
 
@@ -133,8 +129,8 @@ class Main extends JFrame {
         this.setSize(800, 624);
         this.setLocation((w - 800) / 2, (h - 624) / 2);
         this.setResizable(false);
-        this.setIconImage(media.cIcon("fichas/wit.png").getImage());
-        this.setCursor(new Cursor(12));
+        this.setIconImage(Objects.requireNonNull(Media.cIcon("cards/wit.png")).getImage());
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         sucesos.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +156,6 @@ class Main extends JFrame {
             }
         });
         nuevoJ.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked1(evt);
             }
@@ -228,23 +223,23 @@ class Main extends JFrame {
         aDeDom.setText("Acerca de...");
         sucesos.setText("Sucesos");
         sucesos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        sucesos.setIcon(media.cIcon("botones/edit-find-replace.png"));
+        sucesos.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
         sucesos.setEnabled(false);
         verP.setText("Ver puntuacion");
         verP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        verP.setIcon(media.cIcon("botones/edit-find-replace.png"));
+        verP.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
         verP.setEnabled(false);
         salir.setText("Salir");
         salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
-        salir.setIcon(media.cIcon("botones/salir.png"));
+        salir.setIcon(Media.cIcon("buttons/salir.png"));
         nuevoJ.setText("Nuevo juego");
         nuevoJ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        nuevoJ.setIcon(media.cIcon("botones/reini.png"));
-        aDeDom.setIcon(media.cIcon("fichas/wit.png"));
+        nuevoJ.setIcon(Media.cIcon("buttons/reini.png"));
+        aDeDom.setIcon(Media.cIcon("cards/wit.png"));
         juego.setText("Juego");
         ayuda.setText("Ayuda");
-        juego.setIcon(media.cIcon("botones/system-run.png"));
-        this.setTitle("DOMINÓ");
+        juego.setIcon(Media.cIcon("buttons/system-run.png"));
+        this.setTitle("DOMINO");
         jMenuBar1.add(juego);
         jMenuBar1.add(ayuda);
         ayuda.add(aDeDom);
@@ -266,8 +261,8 @@ class Main extends JFrame {
         continuar.setBackground(Color.RED);
         continuar.setBorder(null);
         continuar.setBorderPainted(false);
-        continuar.setRolloverIcon(media.cIcon("botones/continuar1a.png"));
-        continuar.setIcon(media.cIcon("botones/continuar1.png"));
+        continuar.setRolloverIcon(Media.cIcon("buttons/continuar1a.png"));
+        continuar.setIcon(Media.cIcon("buttons/continuar1.png"));
         continuar.setBounds(328, 321, 140, 48);
         setJMenuBar(jMenuBar1);
 
@@ -424,7 +419,7 @@ class Main extends JFrame {
     }
 
     public void clicked4(java.awt.event.ActionEvent evt) {
-        this.muestraPunt(3, 0, 0, 0);
+        muestraPunt(3, 0, 0, 0);
     }
 
     private void enterM(java.awt.event.MouseEvent evt) {
@@ -438,28 +433,27 @@ class Main extends JFrame {
     }
 
     private void clicked6(ActionEvent evt) {
-        KDialog pi = new KDialog();
+        Dialog pi = new Dialog();
         pi.setVisible(true);
     }
 
-    class KDialog extends javax.swing.JDialog {
+    static class Dialog extends javax.swing.JDialog {
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int w = (int) (pantalla.getWidth());
         int h = (int) (pantalla.getHeight());
         private javax.swing.JButton OK;
-        private KPanel kp;
 
-        public KDialog() {
-            diseño();
+        public Dialog() {
+            design();
         }
 
-        public void diseño() {
+        public void design() {
             OK = new javax.swing.JButton("OK");
-            kp = new KPanel();
+            KPanel kp = new KPanel();
 
             this.setTitle("Acerca");
-            this.setIconImage(media.cIcon("fichas/wit.png").getImage());
+            this.setIconImage(Objects.requireNonNull(Media.cIcon("cards/wit.png")).getImage());
             this.setModal(true);
             this.setSize(300, 150);
             this.setResizable(false);
@@ -493,7 +487,7 @@ class Main extends JFrame {
                 x1 = -130;
                 x2 = -130;
                 x3 = -130;
-                present = media.cIcon("partes/present.jpg").getImage();
+                present = Objects.requireNonNull(Media.cIcon("parts/present.jpg")).getImage();
                 KThread kt = new KThread();
                 kt.start();
                 repaint();
@@ -505,9 +499,9 @@ class Main extends JFrame {
                 g.fillRect(0, 0, 300, 150);
                 g.drawImage(present, 0, 0, 150, 130, this);
                 g.setColor(Color.WHITE);
-                g.drawString("DOMINO (2011)", x1, 20);
+                g.drawString("DOMINO v1.0 2011", x1, 20);
                 g.drawString("Autor:", x2, 50);
-                g.drawString("Jose Carlos Soto", x3, 80);
+                g.drawString("Jose Soto", x3, 80);
                 
             }
 
@@ -558,7 +552,7 @@ class Main extends JFrame {
         for (int i = 0; i < sucs.size(); i++) {
             sucss[i] = sucs.get(i) + "\n";
         }
-        JOptionPane.showMessageDialog(this, sucss, "Sucesos", JOptionPane.OK_OPTION, media.cIcon("botones/edit-find-replace.png"));
+        JOptionPane.showMessageDialog(this, sucss, "Sucesos", JOptionPane.ERROR_MESSAGE, Media.cIcon("buttons/edit-find-replace.png"));
 
     }
 
@@ -566,7 +560,7 @@ class Main extends JFrame {
     public static void main(String[] args) {
         try{
             UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-        }catch(Exception e){}
+        } catch(Exception ignored){}
         JFrame.setDefaultLookAndFeelDecorated(false);
        new Main();
     }

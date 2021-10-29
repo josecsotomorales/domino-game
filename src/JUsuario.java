@@ -1,5 +1,5 @@
 /*
- *@author: Jose Carlos Soto
+ *@author: Jose Soto
  */
 public class JUsuario extends Jugador{
       private int numero;
