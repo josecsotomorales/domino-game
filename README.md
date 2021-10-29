@@ -1,2 +1,2 @@
 # Domino Game
-Domino Game using Java 
+Domino Game using Java Swing
