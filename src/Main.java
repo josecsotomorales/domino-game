@@ -239,7 +239,7 @@ class Main extends JFrame {
         juego.setText("Game");
         ayuda.setText("Help");
         juego.setIcon(Media.cIcon("buttons/system-run.png"));
-        this.setTitle("Dominoes");
+        this.setTitle("Domino Game");
         jMenuBar1.add(juego);
         jMenuBar1.add(ayuda);
         ayuda.add(aDeDom);

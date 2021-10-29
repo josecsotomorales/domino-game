@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Domineering extends Player {
 
     private int nDat;
-    private int numero;
+    private final int numero;
 
     public Domineering(int i) {
         numero = i;
@@ -329,6 +329,6 @@ return be;
 
     @Override
     public String toString() {
-        return "Dominador";
+        return "Domineering";
     }
 }

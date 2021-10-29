@@ -3,9 +3,7 @@
  */
 import java.util.ArrayList;
 public class Greedy extends Player {
-    private int numero;
     public Greedy(int i){
-        numero=i;
     }
     public CardPlayer juega() {
         
@@ -59,6 +57,6 @@ public class Greedy extends Player {
     
     @Override
     public String toString(){
-        return "Botagorda";
+        return "Greedy";
     }
 }
