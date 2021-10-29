@@ -3,9 +3,11 @@
  */
 
 import java.io.*;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 public class Media {
 
@@ -27,16 +29,23 @@ public class Media {
         try {
             if (TipoSonido == 1) {
                 InputStream dirSonido = Media.class.getResourceAsStream("audio/S1.wav");
-                AudioStream as = new AudioStream(dirSonido);
-                AudioPlayer.player.start(as);
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(dirSonido));
+                clip.start();
+
             } else if (TipoSonido == 2) {
                 InputStream dirSonido = Media.class.getResourceAsStream("audio/S2.wav");
-                AudioStream as = new AudioStream(dirSonido);
-                AudioPlayer.player.start(as);
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(dirSonido));
+                clip.start();
             }
             Thread.sleep(1);
         } catch (IOException io) {
         } catch (InterruptedException ie) {
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 }
