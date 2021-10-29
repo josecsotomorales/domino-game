@@ -4,7 +4,7 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class Ficha {
+public class Card {
     private int sum;
     private char orient;
     private Media media;
@@ -13,7 +13,7 @@ public class Ficha {
     private Image imf, backV;
 
     
-    public Ficha(int v1, int v2) {
+    public Card(int v1, int v2) {
         activa = true;
         this.v1 = v1;
         this.v2 = v2;

@@ -1,12 +1,12 @@
 /*
  *@author: Jose Soto
  */
-public class JUsuario extends Jugador{
+public class UserPlayer extends Player {
       private int numero;
-public JUsuario(int i){
+public UserPlayer(int i){
         numero=i;
     }
-    public FichaJ juega() {
+    public CardPlayer juega() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

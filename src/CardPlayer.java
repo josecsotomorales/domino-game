@@ -1,15 +1,16 @@
 /*
  *@author: Jose Soto
  */
-public class FichaJ {
-private Ficha ficha;
+
+public class CardPlayer {
+private Card ficha;
 private int loc;
-public FichaJ(Ficha f,int d){
+public CardPlayer(Card f, int d){
     ficha=f;
     loc=d;
 }
 
-    public Ficha getFicha() {
+    public Card getFicha() {
         return ficha;
     }
 

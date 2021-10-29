@@ -38,7 +38,7 @@ class Main extends JFrame {
     static Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
     static int w = (int) (pantalla.getWidth());
     static int h = (int) (pantalla.getHeight());
-    private Animadora f;
+    private Animation f;
 
     public Main() {
 
@@ -47,7 +47,7 @@ class Main extends JFrame {
     }
 
     private void animacion() {
-        f = new Animadora();
+        f = new Animation();
         this.add(f);
         f.setBounds(-2, -29, 800, 600);
         DibujaInicio t = new DibujaInicio();
@@ -433,18 +433,18 @@ class Main extends JFrame {
     }
 
     private void clicked6(ActionEvent evt) {
-        Dialog pi = new Dialog();
+        KDialog pi = new KDialog();
         pi.setVisible(true);
     }
 
-    static class Dialog extends javax.swing.JDialog {
+    static class KDialog extends javax.swing.JDialog {
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int w = (int) (pantalla.getWidth());
         int h = (int) (pantalla.getHeight());
         private javax.swing.JButton OK;
 
-        public Dialog() {
+        public KDialog() {
             design();
         }
 
@@ -547,7 +547,7 @@ class Main extends JFrame {
 
     private void clicked8(ActionEvent evt) {
         media.PlayAudio(2);
-        ArrayList<String> sucs = Animadora.getSucs();
+        ArrayList<String> sucs = Animation.getSucs();
         String[] sucss = new String[sucs.size()];
         for (int i = 0; i < sucs.size(); i++) {
             sucss[i] = sucs.get(i) + "\n";

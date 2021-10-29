@@ -4,28 +4,28 @@
  */
 import java.util.ArrayList;
 
-public class Aliado extends Jugador {
+public class Ally extends Player {
 
     private int numero;
 
 
-    public Aliado(int i) {
+    public Ally(int i) {
         numero = i;
     }
 
-    public FichaJ juega() {
+    public CardPlayer juega() {
 
-        ArrayList<FichaJ> pci = new ArrayList<FichaJ>();
-        ArrayList<FichaJ> pcd = new ArrayList<FichaJ>();
+        ArrayList<CardPlayer> pci = new ArrayList<CardPlayer>();
+        ArrayList<CardPlayer> pcd = new ArrayList<CardPlayer>();
         int i = 0;
         fj = null;
 
-        if (Animadora.cI.size() == 0) {
-            fj = new FichaJ(data.get(i), 1);
+        if (Animation.cI.size() == 0) {
+            fj = new CardPlayer(data.get(i), 1);
             i++;
             while (i < 10) {
                 if (data.get(i).getSum() > fj.getFicha().getSum()) {
-                    fj = new FichaJ(data.get(i), 1);
+                    fj = new CardPlayer(data.get(i), 1);
                     i++;
                 } else {
                     i++;
@@ -35,11 +35,11 @@ public class Aliado extends Jugador {
         } else {
             while (i < 10) {
                 if (data.get(i).esActiva() && !super.esForro(data.get(i), 1)) {
-                    pci.add(new FichaJ(data.get(i), 1));
+                    pci.add(new CardPlayer(data.get(i), 1));
 
                 }
                 if (data.get(i).esActiva() && !super.esForro(data.get(i), 2)) {
-                    pcd.add(new FichaJ(data.get(i), 2));
+                    pcd.add(new CardPlayer(data.get(i), 2));
 
                 }
                 i++;
@@ -153,13 +153,13 @@ public class Aliado extends Jugador {
 
     private boolean mataI() {
         if (numero == 1) {
-            if (3 == Mesa.getUltCI()) {
+            if (3 == Table.getUltCI()) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if ((numero - 2 == Mesa.getUltCI())) {
+            if ((numero - 2 == Table.getUltCI())) {
 
                 return true;
             } else {
@@ -171,13 +171,13 @@ public class Aliado extends Jugador {
 
     private boolean mataD() {
         if (numero == 1) {
-            if (3 == Mesa.getUltCD()) {
+            if (3 == Table.getUltCD()) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if ((numero - 2 == Mesa.getUltCD())) {
+            if ((numero - 2 == Table.getUltCD())) {
 
                 return true;
             } else {
@@ -187,11 +187,11 @@ public class Aliado extends Jugador {
         }
     }
 
-    private boolean fallaI(Ficha f) {
+    private boolean fallaI(Card f) {
         int f1 = f.getV1();
         int f2 = f.getV2();
         int k;
-        if (f1 == Animadora.cabezaD) {
+        if (f1 == Animation.cabezaD) {
             k = f2;
 
         } else {
@@ -199,31 +199,31 @@ public class Aliado extends Jugador {
         }
         int i = 0;
         if (numero == 1) {
-            if (Mesa.getPases(3).size()!=0) {
-                while (i < Mesa.getPases(3).size() && k != Mesa.getPases(3).get(i)) {
+            if (Table.getPases(3).size()!=0) {
+                while (i < Table.getPases(3).size() && k != Table.getPases(3).get(i)) {
                     i++;
                 }
-                return i < Mesa.getPases(3).size();
+                return i < Table.getPases(3).size();
             } else {
                 return false;
             }
         } else {
-            if (Mesa.getPases(numero - 2).size()!=0) {
-                while (i < Mesa.getPases(numero - 2).size() && k != Mesa.getPases(numero - 2).get(i)) {
+            if (Table.getPases(numero - 2).size()!=0) {
+                while (i < Table.getPases(numero - 2).size() && k != Table.getPases(numero - 2).get(i)) {
                     i++;
                 }
-                return i < Mesa.getPases(numero - 2).size();
+                return i < Table.getPases(numero - 2).size();
             } else {
                 return false;
             }
         }
     }
 
-    private boolean fallaD(Ficha f) {
+    private boolean fallaD(Card f) {
         int f1 = f.getV1();
         int f2 = f.getV2();
         int k;
-        if (f1 == Animadora.cabezaI) {
+        if (f1 == Animation.cabezaI) {
             k = f2;
 
         } else {
@@ -231,20 +231,20 @@ public class Aliado extends Jugador {
         }
         int i = 0;
         if (numero == 1) {
-            if (Mesa.getPases(3).size()!=0) {
-                while (i < Mesa.getPases(3).size() && k != Mesa.getPases(3).get(i)) {
+            if (Table.getPases(3).size()!=0) {
+                while (i < Table.getPases(3).size() && k != Table.getPases(3).get(i)) {
                     i++;
                 }
-                return i < Mesa.getPases(3).size();
+                return i < Table.getPases(3).size();
             } else {
                 return false;
             }
         } else {
-            if (Mesa.getPases(numero - 2).size()!=0) {
-                while (i < Mesa.getPases(numero - 2).size() && k != Mesa.getPases(numero - 2).get(i)) {
+            if (Table.getPases(numero - 2).size()!=0) {
+                while (i < Table.getPases(numero - 2).size() && k != Table.getPases(numero - 2).get(i)) {
                     i++;
                 }
-                return i < Mesa.getPases(numero - 2).size();
+                return i < Table.getPases(numero - 2).size();
             } else {
                 return false;
             }

@@ -4,16 +4,16 @@
 import java.util.ArrayList;
 
 
-public abstract class Jugador{
+public abstract class Player {
   
 
-   protected FichaJ fj;
-    protected Ficha[] predata;
-    protected ArrayList<Ficha> data;
+   protected CardPlayer fj;
+    protected Card[] predata;
+    protected ArrayList<Card> data;
 
-public abstract FichaJ juega();
-public void cojeFich(Ficha[] d,char tipo){
-        data=new ArrayList<Ficha>();
+public abstract CardPlayer juega();
+public void cojeFich(Card[] d, char tipo){
+        data=new ArrayList<Card>();
     predata=d;
     for(int i=0;i<predata.length;i++){
         data.add(i, predata[i]);
@@ -34,12 +34,12 @@ public void cojeFich(Ficha[] d,char tipo){
 
     }
     }
-public ArrayList<Ficha> getFichas(){
+public ArrayList<Card> getFichas(){
     return data;
 }
 public boolean lleva(){
         int i=0;
-         if(Animadora.cI.size()==0){
+         if(Animation.cI.size()==0){
         return true;
     }else{
         while(i<10&&(!data.get(i).esActiva()||(esForro(data.get(i),1)&&esForro(data.get(i),2)))){
@@ -77,18 +77,18 @@ if(data.get(i).esActiva()){
 
     }
  }
-  public boolean esForro(Ficha cual,int pDonde){
+  public boolean esForro(Card cual, int pDonde){
     boolean f = false;
-    if(Animadora.cI.size()==0){
+    if(Animation.cI.size()==0){
 
     }
     if(pDonde==1){
-        if((cual.isDoble()&&(Animadora.cI.get(Animadora.cI.size()-1).isDoble()))||!(cual.getV1()==Animadora.cabezaD||cual.getV2()==Animadora.cabezaD)){
+        if((cual.isDoble()&&(Animation.cI.get(Animation.cI.size()-1).isDoble()))||!(cual.getV1()== Animation.cabezaD||cual.getV2()== Animation.cabezaD)){
             f=true;
         }else{f=false;}
     }else{
         if(pDonde==2){
-        if((cual.isDoble()&&(Animadora.cD.get(Animadora.cD.size()-1).isDoble()))||!(cual.getV1()==Animadora.cabezaI||cual.getV2()==Animadora.cabezaI)){
+        if((cual.isDoble()&&(Animation.cD.get(Animation.cD.size()-1).isDoble()))||!(cual.getV1()== Animation.cabezaI||cual.getV2()== Animation.cabezaI)){
             f=true;
         }else{f=false;}
     }

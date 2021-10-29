@@ -3,28 +3,28 @@
  */
 import java.util.ArrayList;
 
-public class Dominador extends Jugador {
+public class Domineering extends Player {
 
     private int nDat;
     private int numero;
 
-    public Dominador(int i) {
+    public Domineering(int i) {
         numero = i;
     }
 
-    public FichaJ juega() {
+    public CardPlayer juega() {
         buscaNDat();
-        ArrayList<FichaJ> pci = new ArrayList<FichaJ>();
-        ArrayList<FichaJ> pcd = new ArrayList<FichaJ>();
+        ArrayList<CardPlayer> pci = new ArrayList<CardPlayer>();
+        ArrayList<CardPlayer> pcd = new ArrayList<CardPlayer>();
         int i = 0;
         fj = null;
 
-        if (Animadora.cI.size() == 0) {
-            fj = new FichaJ(data.get(i), 1);
+        if (Animation.cI.size() == 0) {
+            fj = new CardPlayer(data.get(i), 1);
             i++;
             while (i < 10) {
                 if (data.get(i).getSum() > fj.getFicha().getSum()) {
-                    fj = new FichaJ(data.get(i), 1);
+                    fj = new CardPlayer(data.get(i), 1);
                     i++;
                 } else {
                     i++;
@@ -34,11 +34,11 @@ public class Dominador extends Jugador {
         } else {
             while (i < 10) {
                 if (data.get(i).esActiva() && !super.esForro(data.get(i), 1)) {
-                    pci.add(new FichaJ(data.get(i), 1));
+                    pci.add(new CardPlayer(data.get(i), 1));
 
                 }
                 if (data.get(i).esActiva() && !super.esForro(data.get(i), 2)) {
-                    pcd.add(new FichaJ(data.get(i), 2));
+                    pcd.add(new CardPlayer(data.get(i), 2));
 
                 }
                 i++;
@@ -260,22 +260,22 @@ public class Dominador extends Jugador {
         
     }
 
-    private boolean esNDat(Ficha f) {
+    private boolean esNDat(Card f) {
         int v1 = f.getV1();
         int v2 = f.getV2();
-        if (((v1 == Animadora.cabezaD || v1 == Animadora.cabezaI) && v2 == nDat) || ((v2 == Animadora.cabezaD || v2 == Animadora.cabezaI) && v1 == nDat)) {
+        if (((v1 == Animation.cabezaD || v1 == Animation.cabezaI) && v2 == nDat) || ((v2 == Animation.cabezaD || v2 == Animation.cabezaI) && v1 == nDat)) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean pasaCont(Ficha f) {
+    private boolean pasaCont(Card f) {
         boolean be;
         int f1 = f.getV1();
         int f2 = f.getV2();
         int k;
-        if (f1 == Animadora.cabezaD || f1 == Animadora.cabezaI) {
+        if (f1 == Animation.cabezaD || f1 == Animation.cabezaI) {
             k = f2;
 
         } else {
@@ -284,40 +284,40 @@ public class Dominador extends Jugador {
         int j = 0;
         int i = 0;
         if (numero == 3) {
-            if (Mesa.getPases(0).size()!=0) {
-                while (i < Mesa.getPases(0).size() && k != Mesa.getPases(0).get(i)) {
+            if (Table.getPases(0).size()!=0) {
+                while (i < Table.getPases(0).size() && k != Table.getPases(0).get(i)) {
                     i++;
                 }
 
-                be=i < Mesa.getPases(2).size();
+                be=i < Table.getPases(2).size();
             }
-            if (Mesa.getPases(0).size()==0 && Mesa.getPases(2).size()!=0) {
-                while (i < Mesa.getPases(2).size() && k != Mesa.getPases(2).get(i)) {
+            if (Table.getPases(0).size()==0 && Table.getPases(2).size()!=0) {
+                while (i < Table.getPases(2).size() && k != Table.getPases(2).get(i)) {
                     i++;
                 }
 
-                be=i < Mesa.getPases(2).size();
+                be=i < Table.getPases(2).size();
             } else {
                 be= false;
             }
             
 return be;
         } else {
-            if (Mesa.getPases(numero + 1).size()!=0) {
+            if (Table.getPases(numero + 1).size()!=0) {
                 
-                while (i < Mesa.getPases(numero + 1).size() && k != Mesa.getPases(numero + 1).get(i)) {
+                while (i < Table.getPases(numero + 1).size() && k != Table.getPases(numero + 1).get(i)) {
                     i++;
                 }
 
-                be=i < Mesa.getPases(numero + 1).size();
+                be=i < Table.getPases(numero + 1).size();
             }
-            if (Mesa.getPases(numero + 1).size()==0 && Mesa.getPases(numero - 1).size()!=0) {
+            if (Table.getPases(numero + 1).size()==0 && Table.getPases(numero - 1).size()!=0) {
                 
-                while (i < Mesa.getPases(numero - 1).size() && k != Mesa.getPases(numero - 1).get(i)) {
+                while (i < Table.getPases(numero - 1).size() && k != Table.getPases(numero - 1).get(i)) {
                     i++;
                 }
 
-                be=i < Mesa.getPases(2).size();
+                be=i < Table.getPases(2).size();
             } else {
                 be= false;
             }

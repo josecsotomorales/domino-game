@@ -4,26 +4,26 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Mesa{
+public class Table {
     private static int ultCI;
     private static int ultCD;
     private static ArrayList<Integer> pases1;
     private static ArrayList<Integer> pases2;
  private static ArrayList<Integer> pasesU;
     private static ArrayList<Integer> pasesA;
-   static Pareja pU,pM;
-   static Ficha[] p1,  p2,  p3,  p4;
-private Ficha[] tf = {new Ficha(0, 0), new Ficha(1, 0), new Ficha(2, 0), new Ficha(3, 0), new Ficha(4, 0),
-        new Ficha(5, 0), new Ficha(6, 0), new Ficha(7, 0), new Ficha(8, 0), new Ficha(9, 0),
-        new Ficha(1, 1), new Ficha(2, 1), new Ficha(3, 1), new Ficha(4, 1), new Ficha(5, 1),
-        new Ficha(6, 1), new Ficha(7, 1), new Ficha(8, 1), new Ficha(9, 1), new Ficha(2, 2),
-        new Ficha(3, 2), new Ficha(4, 2), new Ficha(5, 2), new Ficha(6, 2), new Ficha(7, 2),
-        new Ficha(8, 2), new Ficha(9, 2), new Ficha(3, 3), new Ficha(4, 3), new Ficha(5, 3),
-        new Ficha(6, 3), new Ficha(7, 3), new Ficha(8, 3), new Ficha(9, 3), new Ficha(4, 4),
-        new Ficha(5, 4), new Ficha(6, 4), new Ficha(7, 4), new Ficha(8, 4), new Ficha(9, 4),
-        new Ficha(5, 5), new Ficha(6, 5), new Ficha(7, 5), new Ficha(8, 5), new Ficha(9, 5),
-        new Ficha(6, 6), new Ficha(7, 6), new Ficha(8, 6), new Ficha(9, 6), new Ficha(7, 7),
-        new Ficha(8, 7), new Ficha(9, 7), new Ficha(8, 8), new Ficha(9, 8), new Ficha(9, 9)};
+   static Team pU,pM;
+   static Card[] p1,  p2,  p3,  p4;
+private Card[] tf = {new Card(0, 0), new Card(1, 0), new Card(2, 0), new Card(3, 0), new Card(4, 0),
+        new Card(5, 0), new Card(6, 0), new Card(7, 0), new Card(8, 0), new Card(9, 0),
+        new Card(1, 1), new Card(2, 1), new Card(3, 1), new Card(4, 1), new Card(5, 1),
+        new Card(6, 1), new Card(7, 1), new Card(8, 1), new Card(9, 1), new Card(2, 2),
+        new Card(3, 2), new Card(4, 2), new Card(5, 2), new Card(6, 2), new Card(7, 2),
+        new Card(8, 2), new Card(9, 2), new Card(3, 3), new Card(4, 3), new Card(5, 3),
+        new Card(6, 3), new Card(7, 3), new Card(8, 3), new Card(9, 3), new Card(4, 4),
+        new Card(5, 4), new Card(6, 4), new Card(7, 4), new Card(8, 4), new Card(9, 4),
+        new Card(5, 5), new Card(6, 5), new Card(7, 5), new Card(8, 5), new Card(9, 5),
+        new Card(6, 6), new Card(7, 6), new Card(8, 6), new Card(9, 6), new Card(7, 7),
+        new Card(8, 7), new Card(9, 7), new Card(8, 8), new Card(9, 8), new Card(9, 9)};
     public static int getUltCI() {
         return ultCI;
     }
@@ -42,7 +42,7 @@ private Ficha[] tf = {new Ficha(0, 0), new Ficha(1, 0), new Ficha(2, 0), new Fic
     
     static int x,  y, x2, y2;
     static int xc1 =362,  xc2 =-75,  yc1 =275,  yc2 =275;
-public Mesa(){
+public Table(){
     ultCI=0;
     ultCD=0;
       pasesU=new ArrayList<Integer>();
@@ -53,22 +53,22 @@ public Mesa(){
     
 
     public static void creaPareja(int t) {
-        pU = new ParejaU(t);
-        pM = new ParejaM();
+        pU = new TeamUser(t);
+        pM = new TeamMachine();
     }
 
     public void daAgua() {
-p1 = new Ficha[10];
-        p2 = new Ficha[10];
-        p3 = new Ficha[10];
-        p4 = new Ficha[10];
+p1 = new Card[10];
+        p2 = new Card[10];
+        p3 = new Card[10];
+        p4 = new Card[10];
 
         Random r = new Random();
         int x = getTf().length;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 10; j++) {
                 int p = r.nextInt(x);
-                Ficha v = getTf()[p];
+                Card v = getTf()[p];
                 switch (i) {
                     case 0:
                         p1[j] = v;
@@ -82,7 +82,7 @@ p1 = new Ficha[10];
                     case 3:
                         p4[j] = v;
                 }
-                Ficha[] tmp = new Ficha[--x];
+                Card[] tmp = new Card[--x];
                 for (int k = 0; k < p; k++) {
                     tmp[k] = getTf()[k];
                 }
@@ -104,15 +104,15 @@ p1 = new Ficha[10];
         pM.getJ2().cojeFich(p4,'m');
     }
 
-    public static Pareja getPu() {
+    public static Team getPu() {
         return pU;
     }
 
-    public static Pareja getPm() {
+    public static Team getPm() {
         return pM;
     }
 
-    public Ficha[] getTf() {
+    public Card[] getTf() {
         return tf;
     }
   

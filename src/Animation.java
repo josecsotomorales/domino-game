@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  *
  *@author: Jose Soto
  */
-public class Animadora extends JPanel {
+public class Animation extends JPanel {
 
     static ArrayList<String> sucs;
     private int qAnim = 0;
@@ -33,7 +33,7 @@ public class Animadora extends JPanel {
     private int punt, xnomU, xparSel, xPase, yM, puntU = 0, puntM = 0, datas = 0;
     private String nombreU, parejaSel, maquina1, maquina2, pase = "SE PASO ", compl = "";
     private Media media = new Media();
-    private Mesa mesaJ;
+    private Table mesaJ;
     private int[] lind;
     private int ind, pxg, pyg;
     private MouseMotionListener e, eW;
@@ -53,13 +53,13 @@ public class Animadora extends JPanel {
     private Graphics G;
     private Image I;
     Image present, mesa, tabla1, config;
-    ArrayList<Ficha> fich, fichA, fichJ1, fichJ2;
-    static ArrayList<Ficha> cD;
-    static ArrayList<Ficha> cI;
-    private static Ficha[] sobra;
+    ArrayList<Card> fich, fichA, fichJ1, fichJ2;
+    static ArrayList<Card> cD;
+    static ArrayList<Card> cI;
+    private static Card[] sobra;
     private Color color;
 
-    public Animadora() {
+    public Animation() {
         setSize(800, 600);
         setBackground(Color.BLACK);
         config = media.cIcon("parts/config.png").getImage();
@@ -72,7 +72,7 @@ public class Animadora extends JPanel {
 
     }
 
-    private char mOrientD(Ficha f, String or) {
+    private char mOrientD(Card f, String or) {
         char ori = 'q';
         if (or.equals("ver")) {
             if (cabezaD == f.getV1()) {
@@ -106,7 +106,7 @@ public class Animadora extends JPanel {
         return ori;
     }
 
-    private char mOrientI(Ficha f, String or) {
+    private char mOrientI(Card f, String or) {
         char ori = 'q';
         if (or.equals("ver")) {
             if (cabezaI == f.getV1()) {
@@ -149,24 +149,24 @@ public class Animadora extends JPanel {
         cantPases = 0;
         dirI = 1;
         dirD = 1;
-        Mesa.xc1 = 362;
-        Mesa.yc1 = 275;
-        Mesa.xc2 = -75;
-        Mesa.yc2 = 275;
+        Table.xc1 = 362;
+        Table.yc1 = 275;
+        Table.xc2 = -75;
+        Table.yc2 = 275;
         xc1t = -75;
         yc1t = -75;
         xc2t = -75;
         yc2t = -75;
-        Mesa.x = (800 - 30) / 2;
-        Mesa.y = (600 - 60) / 2 + 12;
-        Mesa.x2 = (800 - 30) / 2;
-        Mesa.y2 = (600 - 60) / 2 + 12;
+        Table.x = (800 - 30) / 2;
+        Table.y = (600 - 60) / 2 + 12;
+        Table.x2 = (800 - 30) / 2;
+        Table.y2 = (600 - 60) / 2 + 12;
         this.removeMouseListener(eW1);
         this.removeMouseListener(eW2);
         this.removeMouseMotionListener(eW);
-        cI = new ArrayList<Ficha>();
-        cD = new ArrayList<Ficha>();
-        mesaJ = new Mesa();
+        cI = new ArrayList<Card>();
+        cD = new ArrayList<Card>();
+        mesaJ = new Table();
         mesaJ.creaPareja(i);
         mesaJ.daAgua();
         mesaJ.repartir();
@@ -188,7 +188,7 @@ public class Animadora extends JPanel {
         yco = 600;
     }
 
-    public static Ficha[] getSobra() {
+    public static Card[] getSobra() {
         return sobra;
     }
 
@@ -245,9 +245,9 @@ public class Animadora extends JPanel {
     public void dibujaMesa(int oc) {
 
         nombreU = Main.nombreU;
-        parejaSel = Mesa.getPu().getA().toString();
-        maquina1 = "M1" + Mesa.getPm().getJ2().toString().substring(0, 3);
-        maquina2 = "M2" + Mesa.getPm().getJ1().toString().substring(0, 3);
+        parejaSel = Table.getPu().getA().toString();
+        maquina1 = "M1" + Table.getPm().getJ2().toString().substring(0, 3);
+        maquina2 = "M2" + Table.getPm().getJ1().toString().substring(0, 3);
         punt = Main.punt;
         ypr = 600;
         repaint();
@@ -310,27 +310,27 @@ public class Animadora extends JPanel {
         yM = 650;
         dirI = 1;
         dirD = 1;
-        Mesa.xc1 = 362;
-        Mesa.yc1 = 275;
-        Mesa.xc2 = -75;
-        Mesa.yc2 = 275;
+        Table.xc1 = 362;
+        Table.yc1 = 275;
+        Table.xc2 = -75;
+        Table.yc2 = 275;
         xc1t = -75;
         yc1t = -75;
         xc2t = -75;
         yc2t = -75;
-        Mesa.x = (800 - 30) / 2;
-        Mesa.y = (600 - 60) / 2 + 12;
-        Mesa.x2 = (800 - 30) / 2;
-        Mesa.y2 = (600 - 60) / 2 + 12;
-        mesaJ = new Mesa();
+        Table.x = (800 - 30) / 2;
+        Table.y = (600 - 60) / 2 + 12;
+        Table.x2 = (800 - 30) / 2;
+        Table.y2 = (600 - 60) / 2 + 12;
+        mesaJ = new Table();
         mesaJ.daAgua();
         mesaJ.repartir();
         fich = mesaJ.getPu().getU().getFichas();
         fichA = mesaJ.getPu().getA().getFichas();
         fichJ1 = mesaJ.getPm().getJ1().getFichas();
         fichJ2 = mesaJ.getPm().getJ2().getFichas();
-        cI = new ArrayList<Ficha>();
-        cD = new ArrayList<Ficha>();
+        cI = new ArrayList<Card>();
+        cD = new ArrayList<Card>();
 
     }
 
@@ -410,7 +410,7 @@ public class Animadora extends JPanel {
 
     public void juegaU() {
 
-        if (Mesa.getPu().getU().lleva()) {
+        if (Table.getPu().getU().lleva()) {
             cantPases = 0;
             doWindowEvt();
             Main.abilita(0);
@@ -419,7 +419,7 @@ public class Animadora extends JPanel {
             cantPases += 1;
             xPase = 180;
             compl = nombreU;
-            Mesa.setPasesU(cabezaD, cabezaI);
+            Table.setPasesU(cabezaD, cabezaI);
             repaint();
             try {
                 Thread.currentThread().sleep(900);
@@ -438,37 +438,37 @@ public class Animadora extends JPanel {
     }
 
     public void juega1() {
-        FichaJ f = Mesa.getPm().getJ2().juega();
+        CardPlayer f = Table.getPm().getJ2().juega();
         if (f != null) {
 
             cantPases = 0;
             if (f.getLoc() == 1) {
                 if (cI.size() == 0) {
-                    Mesa.setUltCD(1);
+                    Table.setUltCD(1);
                     cD.add(f.getFicha());
                     if (!f.getFicha().isDoble()) {
-                        Mesa.x2 -= 15;
-                        Mesa.y2 += 15;
+                        Table.x2 -= 15;
+                        Table.y2 += 15;
                     }
                 }
                 cI.add(f.getFicha());
                 turn = 3;
-                Mesa.setUltCI(1);
+                Table.setUltCI(1);
                 AnimI an = new AnimI();
                 an.start();
             } else {
                 if (f.getLoc() == 2) {
                     if (cD.size() == 0) {
-                        Mesa.setUltCI(1);
+                        Table.setUltCI(1);
                         cI.add(f.getFicha());
                         if (!f.getFicha().isDoble()) {
-                            Mesa.x -= 15;
-                            Mesa.y += 15;
+                            Table.x -= 15;
+                            Table.y += 15;
                         }
                     }
                     cD.add(f.getFicha());
                     turn = 3;
-                    Mesa.setUltCD(1);
+                    Table.setUltCD(1);
                     AnimD an = new AnimD();
                     an.start();
                 }
@@ -479,7 +479,7 @@ public class Animadora extends JPanel {
             cantPases += 1;
             xPase = 180;
             compl = maquina1;
-            Mesa.setPases2(cabezaD, cabezaI);
+            Table.setPases2(cabezaD, cabezaI);
             repaint();
             try {
                 Thread.currentThread().sleep(900);
@@ -500,37 +500,37 @@ public class Animadora extends JPanel {
     }
 
     public void juega2() {
-        FichaJ f = Mesa.getPu().getA().juega();
+        CardPlayer f = Table.getPu().getA().juega();
         if (f != null) {
 
             cantPases = 0;
             if (f.getLoc() == 1) {
                 if (cI.size() == 0) {
-                    Mesa.setUltCD(2);
+                    Table.setUltCD(2);
                     cD.add(f.getFicha());
                     if (!f.getFicha().isDoble()) {
-                        Mesa.x2 -= 15;
-                        Mesa.y2 += 15;
+                        Table.x2 -= 15;
+                        Table.y2 += 15;
                     }
                 }
                 cI.add(f.getFicha());
                 turn = 4;
-                Mesa.setUltCI(2);
+                Table.setUltCI(2);
                 AnimI an = new AnimI();
                 an.start();
             } else {
                 if (f.getLoc() == 2) {
                     if (cD.size() == 0) {
-                        Mesa.setUltCI(2);
+                        Table.setUltCI(2);
                         cI.add(f.getFicha());
                         if (!f.getFicha().isDoble()) {
-                            Mesa.x -= 15;
-                            Mesa.y += 15;
+                            Table.x -= 15;
+                            Table.y += 15;
                         }
                     }
                     cD.add(f.getFicha());
                     turn = 4;
-                    Mesa.setUltCD(2);
+                    Table.setUltCD(2);
                     AnimD an = new AnimD();
                     an.start();
                 }
@@ -541,7 +541,7 @@ public class Animadora extends JPanel {
             cantPases += 1;
             xPase = 180;
             compl = parejaSel;
-            Mesa.setPasesA(cabezaD, cabezaI);
+            Table.setPasesA(cabezaD, cabezaI);
             repaint();
             try {
                 Thread.currentThread().sleep(900);
@@ -560,37 +560,37 @@ public class Animadora extends JPanel {
     }
 
     public void juega3() {
-        FichaJ f = Mesa.getPm().getJ1().juega();
+        CardPlayer f = Table.getPm().getJ1().juega();
         if (f != null) {
 
             cantPases = 0;
             if (f.getLoc() == 1) {
                 if (cI.size() == 0) {
-                    Mesa.setUltCD(3);
+                    Table.setUltCD(3);
                     cD.add(f.getFicha());
                     if (!f.getFicha().isDoble()) {
-                        Mesa.x2 -= 15;
-                        Mesa.y2 += 15;
+                        Table.x2 -= 15;
+                        Table.y2 += 15;
                     }
                 }
                 cI.add(f.getFicha());
                 turn = 1;
-                Mesa.setUltCI(3);
+                Table.setUltCI(3);
                 AnimI an = new AnimI();
                 an.start();
             } else {
                 if (f.getLoc() == 2) {
                     if (cD.size() == 0) {
-                        Mesa.setUltCI(3);
+                        Table.setUltCI(3);
                         cI.add(f.getFicha());
                         if (!f.getFicha().isDoble()) {
-                            Mesa.x -= 15;
-                            Mesa.y += 15;
+                            Table.x -= 15;
+                            Table.y += 15;
                         }
                     }
                     cD.add(f.getFicha());
                     turn = 1;
-                    Mesa.setUltCD(3);
+                    Table.setUltCD(3);
                     AnimD an = new AnimD();
                     an.start();
                 }
@@ -601,7 +601,7 @@ public class Animadora extends JPanel {
             cantPases += 1;
             xPase = 180;
             compl = maquina2;
-            Mesa.setPases1(cabezaD, cabezaI);
+            Table.setPases1(cabezaD, cabezaI);
             repaint();
             try {
                 Thread.currentThread().sleep(900);
@@ -619,7 +619,7 @@ public class Animadora extends JPanel {
         }
     }
 
-    private boolean haDominado(ArrayList<Ficha> f) {
+    private boolean haDominado(ArrayList<Card> f) {
         int i = 0;
 
         while (i < 10 && !f.get(i).esActiva()) {
@@ -778,10 +778,10 @@ public class Animadora extends JPanel {
     }
 
     private void dra(java.awt.event.MouseEvent evt) {
-        xc1t = Mesa.xc1;
-        yc1t = Mesa.yc1;
-        xc2t = Mesa.xc2;
-        yc2t = Mesa.yc2;
+        xc1t = Table.xc1;
+        yc1t = Table.yc1;
+        xc2t = Table.xc2;
+        yc2t = Table.yc2;
         fich.get(ind).setPx(evt.getX() - 15);
         fich.get(ind).setPy(evt.getY() - 30);
         pxg = evt.getX() - 17;
@@ -920,16 +920,16 @@ public class Animadora extends JPanel {
         pxg = 850;
         repaint();
         this.removeMouseMotionListener(e);
-        if (fich.get(ind).esActiva() && (fich.get(ind).getPx() + 15 > Mesa.xc1 && fich.get(ind).getPx() + 15 < Mesa.xc1 + 75 && fich.get(ind).getPy() + 30 > Mesa.yc1 && fich.get(ind).getPy() + 30 < Mesa.yc1 + 75)) {
+        if (fich.get(ind).esActiva() && (fich.get(ind).getPx() + 15 > Table.xc1 && fich.get(ind).getPx() + 15 < Table.xc1 + 75 && fich.get(ind).getPy() + 30 > Table.yc1 && fich.get(ind).getPy() + 30 < Table.yc1 + 75)) {
             AnimI an = new AnimI();
             if (cD.size() == 0) {
-                Mesa.setUltCD(0);
+                Table.setUltCD(0);
                 cD.add(fich.get(ind));
                 cI.add(fich.get(ind));
 
                 if (!cI.get(0).isDoble()) {
-                    Mesa.x2 -= 15;
-                    Mesa.y2 += 15;
+                    Table.x2 -= 15;
+                    Table.y2 += 15;
                 }
                 an.start();
 
@@ -949,18 +949,18 @@ public class Animadora extends JPanel {
                 }
             }
             sucs.clear();
-            Mesa.setUltCI(0);
+            Table.setUltCI(0);
 
-        } else if (fich.get(ind).esActiva() && (fich.get(ind).getPx() + 15 > Mesa.xc2 && fich.get(ind).getPx() + 15 < Mesa.xc2 + 75 && fich.get(ind).getPy() + 30 > Mesa.yc2 && fich.get(ind).getPy() + 30 < Mesa.yc2 + 75)) {
+        } else if (fich.get(ind).esActiva() && (fich.get(ind).getPx() + 15 > Table.xc2 && fich.get(ind).getPx() + 15 < Table.xc2 + 75 && fich.get(ind).getPy() + 30 > Table.yc2 && fich.get(ind).getPy() + 30 < Table.yc2 + 75)) {
             AnimD an = new AnimD();
             if (cI.size() == 0) {
-                Mesa.setUltCI(0);
+                Table.setUltCI(0);
                 cD.add(fich.get(ind));
                 cI.add(fich.get(ind));
 
                 if (!cD.get(0).isDoble() || !cD.get(0).isDoble()) {
-                    Mesa.x -= 15;
-                    Mesa.y += 15;
+                    Table.x -= 15;
+                    Table.y += 15;
                 }
                 an.start();
             } else {
@@ -978,7 +978,7 @@ public class Animadora extends JPanel {
                 }
             }
             sucs.clear();
-            Mesa.setUltCD(0);
+            Table.setUltCD(0);
         } else {
 
             if (fich.get(ind).esActiva()) {
@@ -1092,13 +1092,13 @@ public class Animadora extends JPanel {
     public void colocaFichaI() {
 
         if (cI.size() == 1) {
-            Ficha h = cI.get(cI.size() - 1);
+            Card h = cI.get(cI.size() - 1);
             if (h.isDoble() && (h.getOrient() == 'v' || h.getOrient() == 'a')) {
 
-                h.setPx(Mesa.x);
-                h.setPy(Mesa.y);
-                Mesa.xc1 = h.getPx() + 30;
-                Mesa.xc2 = h.getPx() - 75;
+                h.setPx(Table.x);
+                h.setPy(Table.y);
+                Table.xc1 = h.getPx() + 30;
+                Table.xc2 = h.getPx() - 75;
                 h.setOrient('v');
                 cabezaD = h.getV1();
                 cabezaI = h.getV2();
@@ -1107,10 +1107,10 @@ public class Animadora extends JPanel {
             } else {
                 if (h.isDoble() && (h.getOrient() == 'h' || h.getOrient() == 'r')) {
 
-                    h.setPx(Mesa.x);
-                    h.setPy(Mesa.y);
-                    Mesa.xc1 = h.getPx() + 30;
-                    Mesa.xc2 = h.getPx() - 75;
+                    h.setPx(Table.x);
+                    h.setPy(Table.y);
+                    Table.xc1 = h.getPx() + 30;
+                    Table.xc2 = h.getPx() - 75;
                     h.setActiva(false);
                     h.setOrient('v');
                     cabezaD = h.getV1();
@@ -1118,12 +1118,12 @@ public class Animadora extends JPanel {
                     repaint();
 
                 } else {
-                    h.setPx(Mesa.x - 15);
-                    h.setPy(Mesa.y + 15);
-                    Mesa.x -= 15;
-                    Mesa.y += 15;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.xc2 = h.getPx() - 75;
+                    h.setPx(Table.x - 15);
+                    h.setPy(Table.y + 15);
+                    Table.x -= 15;
+                    Table.y += 15;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.xc2 = h.getPx() - 75;
                     h.setOrient('e');
                     cabezaD = h.getV1();
                     cabezaI = h.getV2();
@@ -1134,263 +1134,263 @@ public class Animadora extends JPanel {
             }
 
         } else {
-            Ficha h = cI.get(cI.size() - 1);
-            Ficha h2 = cI.get(cI.size() - 2);
+            Card h = cI.get(cI.size() - 1);
+            Card h2 = cI.get(cI.size() - 2);
 
-            if (Mesa.xc1 + 75 < dTop && dirI == 1) {
+            if (Table.xc1 + 75 < dTop && dirI == 1) {
                 if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                    h.setPx(Mesa.x + 30);
-                    h.setPy(Mesa.y + 15);
-                    Mesa.x += 30;
-                    Mesa.y += 15;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.yc1 = h.getPy() - 25;
+                    h.setPx(Table.x + 30);
+                    h.setPy(Table.y + 15);
+                    Table.x += 30;
+                    Table.y += 15;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.yc1 = h.getPy() - 25;
                     h.setOrient(mOrientD(h, "horE"));
                     h.setActiva(false);
                     repaint();
                 }
                 if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'h')) {
-                    h.setPx(Mesa.x + 60);
-                    h.setPy(Mesa.y);
-                    Mesa.x += 60;
-                    Mesa.y += 0;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.yc1 = h.getPy() - 25;
+                    h.setPx(Table.x + 60);
+                    h.setPy(Table.y);
+                    Table.x += 60;
+                    Table.y += 0;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.yc1 = h.getPy() - 25;
                     h.setOrient(mOrientD(h, "horE"));
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                    h.setPx(Mesa.x + 60);
-                    h.setPy(Mesa.y - 15);
-                    Mesa.x += 60;
-                    Mesa.y -= 15;
-                    Mesa.xc1 = h.getPx() + 30;
-                    Mesa.yc1 = h.getPy() - 7;
+                    h.setPx(Table.x + 60);
+                    h.setPy(Table.y - 15);
+                    Table.x += 60;
+                    Table.y -= 15;
+                    Table.xc1 = h.getPx() + 30;
+                    Table.yc1 = h.getPy() - 7;
                     h.setOrient('v');
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                    h.setPx(Mesa.x - 15);
-                    h.setPy(Mesa.y - 30);
-                    Mesa.x -= 15;
-                    Mesa.y -= 30;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.yc1 = h.getPy() - 25;
+                    h.setPx(Table.x - 15);
+                    h.setPy(Table.y - 30);
+                    Table.x -= 15;
+                    Table.y -= 30;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.yc1 = h.getPy() - 25;
                     h.setOrient('h');
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                    h.setPx(Mesa.x + 60);
-                    h.setPy(Mesa.y);
-                    Mesa.x += 60;
-                    Mesa.y -= 0;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.yc1 = h.getPy() - 25;
+                    h.setPx(Table.x + 60);
+                    h.setPy(Table.y);
+                    Table.x += 60;
+                    Table.y -= 0;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.yc1 = h.getPy() - 25;
                     h.setOrient(mOrientD(h, "horE"));
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                    h.setPx(Mesa.x + 30);
-                    h.setPy(Mesa.y);
-                    Mesa.x += 30;
-                    Mesa.y -= 0;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.yc1 = h.getPy() - 25;
+                    h.setPx(Table.x + 30);
+                    h.setPy(Table.y);
+                    Table.x += 30;
+                    Table.y -= 0;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.yc1 = h.getPy() - 25;
                     h.setOrient(mOrientD(h, "horE"));
                     h.setActiva(false);
                     repaint();
                 }
 
             } else {
-                if (Mesa.xc1 + 75 > dTop && dirI == 1) {
-                    Ficha h3 = cI.get(cI.size() - 3);
+                if (Table.xc1 + 75 > dTop && dirI == 1) {
+                    Card h3 = cI.get(cI.size() - 3);
                     if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                        h.setPx(Mesa.x);
-                        h.setPy(Mesa.y - 60);
-                        Mesa.x += 0;
-                        Mesa.y -= 60;
-                        Mesa.xc1 = h.getPx() - 75;
-                        Mesa.yc1 = h.getPy() - 7;
+                        h.setPx(Table.x);
+                        h.setPy(Table.y - 60);
+                        Table.x += 0;
+                        Table.y -= 60;
+                        Table.xc1 = h.getPx() - 75;
+                        Table.yc1 = h.getPy() - 7;
                         h.setOrient(mOrientD(h, "ver"));
                         h.setActiva(false);
                         dirI = 2;
                         repaint();
                     }
                     if (!h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                        h2.setPx(Mesa.x);
-                        h2.setPy(Mesa.y - 30);
-                        Mesa.x += 0;
-                        Mesa.y -= 30;
+                        h2.setPx(Table.x);
+                        h2.setPy(Table.y - 30);
+                        Table.x += 0;
+                        Table.y -= 30;
                         h2.setOrient(h2.nextOrienI());
-                        h.setPx(Mesa.x - 15);
-                        h.setPy(Mesa.y - 30);
-                        Mesa.x -= 15;
-                        Mesa.y -= 30;
-                        Mesa.xc1 = h.getPx() - 75;
-                        Mesa.yc1 = h.getPy() - 25;
+                        h.setPx(Table.x - 15);
+                        h.setPy(Table.y - 30);
+                        Table.x -= 15;
+                        Table.y -= 30;
+                        Table.xc1 = h.getPx() - 75;
+                        Table.yc1 = h.getPy() - 25;
                         h.setOrient('h');
                         h.setActiva(false);
                         dirI = 2;
                         repaint();
                     }
                     if (h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                        h2.setPx(Mesa.x - 30);
-                        h2.setPy(Mesa.y - 75);
-                        Mesa.x -= 30;
-                        Mesa.y -= 75;
+                        h2.setPx(Table.x - 30);
+                        h2.setPy(Table.y - 75);
+                        Table.x -= 30;
+                        Table.y -= 75;
                         h2.setOrient(h2.nextOrienI());
-                        h.setPx(Mesa.x - 15);
-                        h.setPy(Mesa.y - 30);
-                        Mesa.x -= 15;
-                        Mesa.y -= 30;
-                        Mesa.xc1 = h.getPx() - 75;
-                        Mesa.yc1 = h.getPy() - 25;
+                        h.setPx(Table.x - 15);
+                        h.setPy(Table.y - 30);
+                        Table.x -= 15;
+                        Table.y -= 30;
+                        Table.xc1 = h.getPx() - 75;
+                        Table.yc1 = h.getPy() - 25;
                         h.setOrient('h');
                         h.setActiva(false);
                         dirI = 2;
                         repaint();
                     }
                     if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                        h.setPx(Mesa.x + 30);
-                        h.setPy(Mesa.y - 60);
-                        Mesa.x += 30;
-                        Mesa.y -= 60;
-                        Mesa.xc1 = h.getPx() - 75;
-                        Mesa.yc1 = h.getPy() - 7;
+                        h.setPx(Table.x + 30);
+                        h.setPy(Table.y - 60);
+                        Table.x += 30;
+                        Table.y -= 60;
+                        Table.xc1 = h.getPx() - 75;
+                        Table.yc1 = h.getPy() - 7;
                         h.setOrient(mOrientD(h, "ver"));
                         h.setActiva(false);
                         dirI = 2;
                         repaint();
                     }
                 } else {
-                    if (Mesa.xc1 > iTop && dirI == 2) {
+                    if (Table.xc1 > iTop && dirI == 2) {
                         if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                            h.setPx(Mesa.x - 60);
-                            h.setPy(Mesa.y + 15);
-                            Mesa.x -= 60;
-                            Mesa.y += 15;
-                            Mesa.xc1 = h.getPx() - 75;
-                            Mesa.yc1 = h.getPy() - 25;
+                            h.setPx(Table.x - 60);
+                            h.setPy(Table.y + 15);
+                            Table.x -= 60;
+                            Table.y += 15;
+                            Table.xc1 = h.getPx() - 75;
+                            Table.yc1 = h.getPy() - 25;
                             h.setOrient(mOrientD(h, "horW"));
                             h.setActiva(false);
                             repaint();
                         }
                         if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'h')) {
-                            h.setPx(Mesa.x - 60);
-                            h.setPy(Mesa.y);
-                            Mesa.x -= 60;
-                            Mesa.y += 0;
-                            Mesa.xc1 = h.getPx() - 75;
-                            Mesa.yc1 = h.getPy() - 25;
+                            h.setPx(Table.x - 60);
+                            h.setPy(Table.y);
+                            Table.x -= 60;
+                            Table.y += 0;
+                            Table.xc1 = h.getPx() - 75;
+                            Table.yc1 = h.getPy() - 25;
                             h.setOrient(mOrientD(h, "horW"));
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                            h.setPx(Mesa.x - 30);
-                            h.setPy(Mesa.y - 15);
-                            Mesa.x -= 30;
-                            Mesa.y -= 15;
-                            Mesa.xc1 = h.getPx() - 75;
-                            Mesa.yc1 = h.getPy() - 7;
+                            h.setPx(Table.x - 30);
+                            h.setPy(Table.y - 15);
+                            Table.x -= 30;
+                            Table.y -= 15;
+                            Table.xc1 = h.getPx() - 75;
+                            Table.yc1 = h.getPy() - 7;
                             h.setOrient('v');
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                            h.setPx(Mesa.x - 15);
-                            h.setPy(Mesa.y - 30);
-                            Mesa.x -= 15;
-                            Mesa.y -= 30;
-                            Mesa.xc1 = h.getPx() - 75;
-                            Mesa.yc1 = h.getPy() - 25;
+                            h.setPx(Table.x - 15);
+                            h.setPy(Table.y - 30);
+                            Table.x -= 15;
+                            Table.y -= 30;
+                            Table.xc1 = h.getPx() - 75;
+                            Table.yc1 = h.getPy() - 25;
                             h.setOrient('h');
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                            h.setPx(Mesa.x - 60);
-                            h.setPy(Mesa.y);
-                            Mesa.x -= 60;
-                            Mesa.y -= 0;
-                            Mesa.xc1 = h.getPx() - 75;
-                            Mesa.yc1 = h.getPy() - 25;
+                            h.setPx(Table.x - 60);
+                            h.setPy(Table.y);
+                            Table.x -= 60;
+                            Table.y -= 0;
+                            Table.xc1 = h.getPx() - 75;
+                            Table.yc1 = h.getPy() - 25;
                             h.setOrient(mOrientD(h, "horW"));
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                            h.setPx(Mesa.x - 60);
-                            h.setPy(Mesa.y);
-                            Mesa.x -= 60;
-                            Mesa.y -= 0;
-                            Mesa.xc1 = h.getPx() - 75;
-                            Mesa.yc1 = h.getPy() - 25;
+                            h.setPx(Table.x - 60);
+                            h.setPy(Table.y);
+                            Table.x -= 60;
+                            Table.y -= 0;
+                            Table.xc1 = h.getPx() - 75;
+                            Table.yc1 = h.getPy() - 25;
                             h.setOrient(mOrientD(h, "horW"));
                             h.setActiva(false);
                             repaint();
                         }
 
                     } else {
-                        if (Mesa.xc1 < iTop && dirI == 2) {
-                            Ficha h3 = cI.get(cI.size() - 3);
+                        if (Table.xc1 < iTop && dirI == 2) {
+                            Card h3 = cI.get(cI.size() - 3);
                             if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                                h.setPx(Mesa.x);
-                                h.setPy(Mesa.y - 60);
-                                Mesa.x += 0;
-                                Mesa.y -= 60;
-                                Mesa.xc1 = h.getPx() + 30;
-                                Mesa.yc1 = h.getPy() - 7;
+                                h.setPx(Table.x);
+                                h.setPy(Table.y - 60);
+                                Table.x += 0;
+                                Table.y -= 60;
+                                Table.xc1 = h.getPx() + 30;
+                                Table.yc1 = h.getPy() - 7;
                                 h.setOrient(mOrientD(h, "ver"));
                                 h.setActiva(false);
                                 dirI = 1;
                                 repaint();
                             }
                             if (!h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                                h2.setPx(Mesa.x + 30);
-                                h2.setPy(Mesa.y - 30);
-                                Mesa.x += 30;
-                                Mesa.y -= 30;
+                                h2.setPx(Table.x + 30);
+                                h2.setPy(Table.y - 30);
+                                Table.x += 30;
+                                Table.y -= 30;
                                 h2.setOrient(h2.nextOrienD());
-                                h.setPx(Mesa.x - 15);
-                                h.setPy(Mesa.y - 30);
-                                Mesa.x -= 15;
-                                Mesa.y -= 30;
-                                Mesa.xc1 = h.getPx() + 60;
-                                Mesa.yc1 = h.getPy() - 25;
+                                h.setPx(Table.x - 15);
+                                h.setPy(Table.y - 30);
+                                Table.x -= 15;
+                                Table.y -= 30;
+                                Table.xc1 = h.getPx() + 60;
+                                Table.yc1 = h.getPy() - 25;
                                 h.setOrient('h');
                                 h.setActiva(false);
                                 dirI = 1;
                                 repaint();
                             }
                             if (h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                                h2.setPx(Mesa.x + 60);
-                                h2.setPy(Mesa.y - 75);
-                                Mesa.x += 60;
-                                Mesa.y -= 75;
+                                h2.setPx(Table.x + 60);
+                                h2.setPy(Table.y - 75);
+                                Table.x += 60;
+                                Table.y -= 75;
                                 h2.setOrient(h2.nextOrienD());
-                                h.setPx(Mesa.x - 15);
-                                h.setPy(Mesa.y - 30);
-                                Mesa.x -= 15;
-                                Mesa.y -= 30;
-                                Mesa.xc1 = h.getPx() + 60;
-                                Mesa.yc1 = h.getPy() - 25;
+                                h.setPx(Table.x - 15);
+                                h.setPy(Table.y - 30);
+                                Table.x -= 15;
+                                Table.y -= 30;
+                                Table.xc1 = h.getPx() + 60;
+                                Table.yc1 = h.getPy() - 25;
                                 h.setOrient('h');
                                 h.setActiva(false);
                                 dirI = 1;
                                 repaint();
                             }
                             if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                                h.setPx(Mesa.x);
-                                h.setPy(Mesa.y - 60);
-                                Mesa.x += 0;
-                                Mesa.y -= 60;
-                                Mesa.xc1 = h.getPx() + 30;
-                                Mesa.yc1 = h.getPy() - 7;
+                                h.setPx(Table.x);
+                                h.setPy(Table.y - 60);
+                                Table.x += 0;
+                                Table.y -= 60;
+                                Table.xc1 = h.getPx() + 30;
+                                Table.yc1 = h.getPy() - 7;
                                 h.setOrient(mOrientD(h, "ver"));
                                 h.setActiva(false);
                                 dirI = 1;
@@ -1408,10 +1408,10 @@ public class Animadora extends JPanel {
                     for (int i = 0; i < cI.size(); i++) {
                         cI.get(i).setPy(cI.get(i).getPy() + 2);
                     }
-                    Mesa.y += 2;
-                    Mesa.y2 += 2;
-                    Mesa.yc1 += 2;
-                    Mesa.yc2 += 2;
+                    Table.y += 2;
+                    Table.y2 += 2;
+                    Table.yc1 += 2;
+                    Table.yc2 += 2;
                 }
             }
         }
@@ -1422,12 +1422,12 @@ public class Animadora extends JPanel {
     public void colocaFichaD() {
 
         if (cD.size() == 1) {
-            Ficha h = cD.get(cI.size() - 1);
+            Card h = cD.get(cI.size() - 1);
             if (h.isDoble() && (h.getOrient() == 'v' || h.getOrient() == 'a')) {
-                h.setPx(Mesa.x2);
-                h.setPy(Mesa.y2);
-                Mesa.xc1 = h.getPx() + 30;
-                Mesa.xc2 = h.getPx() - 75;
+                h.setPx(Table.x2);
+                h.setPy(Table.y2);
+                Table.xc1 = h.getPx() + 30;
+                Table.xc2 = h.getPx() - 75;
                 h.setActiva(false);
                 h.setOrient('v');
                 cabezaD = h.getV1();
@@ -1435,10 +1435,10 @@ public class Animadora extends JPanel {
                 repaint();
             } else {
                 if (h.isDoble() && (h.getOrient() == 'h' || h.getOrient() == 'r')) {
-                    h.setPx(Mesa.x2);
-                    h.setPy(Mesa.y2);
-                    Mesa.xc1 = h.getPx() + 30;
-                    Mesa.xc2 = h.getPx() - 75;
+                    h.setPx(Table.x2);
+                    h.setPy(Table.y2);
+                    Table.xc1 = h.getPx() + 30;
+                    Table.xc2 = h.getPx() - 75;
                     h.setActiva(false);
                     h.setOrient('v');
                     cabezaD = h.getV1();
@@ -1446,12 +1446,12 @@ public class Animadora extends JPanel {
                     repaint();
 
                 } else {
-                    h.setPx(Mesa.x2 - 15);
-                    h.setPy(Mesa.y2 + 15);
-                    Mesa.x2 -= 15;
-                    Mesa.y2 += 15;
-                    Mesa.xc1 = h.getPx() + 60;
-                    Mesa.xc2 = h.getPx() - 75;
+                    h.setPx(Table.x2 - 15);
+                    h.setPy(Table.y2 + 15);
+                    Table.x2 -= 15;
+                    Table.y2 += 15;
+                    Table.xc1 = h.getPx() + 60;
+                    Table.xc2 = h.getPx() - 75;
                     h.setOrient('e');
                     cabezaD = h.getV1();
                     cabezaI = h.getV2();
@@ -1462,263 +1462,263 @@ public class Animadora extends JPanel {
             }
 
         } else {
-            Ficha h = cD.get(cD.size() - 1);
-            Ficha h2 = cD.get(cD.size() - 2);
+            Card h = cD.get(cD.size() - 1);
+            Card h2 = cD.get(cD.size() - 2);
 
-            if (Mesa.xc2 > iTop && dirD == 1) {
+            if (Table.xc2 > iTop && dirD == 1) {
                 if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                    h.setPx(Mesa.x2 - 60);
-                    h.setPy(Mesa.y2 + 15);
-                    Mesa.x2 -= 60;
-                    Mesa.y2 += 15;
-                    Mesa.xc2 = h.getPx() - 75;
-                    Mesa.yc2 = h.getPy() - 25;
+                    h.setPx(Table.x2 - 60);
+                    h.setPy(Table.y2 + 15);
+                    Table.x2 -= 60;
+                    Table.y2 += 15;
+                    Table.xc2 = h.getPx() - 75;
+                    Table.yc2 = h.getPy() - 25;
                     h.setOrient(mOrientI(h, "horW"));
                     h.setActiva(false);
                     repaint();
                 }
                 if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'h')) {
-                    h.setPx(Mesa.x2 - 60);
-                    h.setPy(Mesa.y2);
-                    Mesa.x2 -= 60;
-                    Mesa.y2 += 0;
-                    Mesa.xc2 = h.getPx() - 75;
-                    Mesa.yc2 = h.getPy() - 25;
+                    h.setPx(Table.x2 - 60);
+                    h.setPy(Table.y2);
+                    Table.x2 -= 60;
+                    Table.y2 += 0;
+                    Table.xc2 = h.getPx() - 75;
+                    Table.yc2 = h.getPy() - 25;
                     h.setOrient(mOrientI(h, "horW"));
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                    h.setPx(Mesa.x2 - 30);
-                    h.setPy(Mesa.y2 - 15);
-                    Mesa.x2 -= 30;
-                    Mesa.y2 -= 15;
-                    Mesa.xc2 = h.getPx() - 75;
-                    Mesa.yc2 = h.getPy() - 7;
+                    h.setPx(Table.x2 - 30);
+                    h.setPy(Table.y2 - 15);
+                    Table.x2 -= 30;
+                    Table.y2 -= 15;
+                    Table.xc2 = h.getPx() - 75;
+                    Table.yc2 = h.getPy() - 7;
                     h.setOrient('v');
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                    h.setPx(Mesa.x2 - 15);
-                    h.setPy(Mesa.y2 + 60);
-                    Mesa.x2 -= 15;
-                    Mesa.y2 += 60;
-                    Mesa.xc2 = h.getPx() - 75;
-                    Mesa.yc2 = h.getPy() - 25;
+                    h.setPx(Table.x2 - 15);
+                    h.setPy(Table.y2 + 60);
+                    Table.x2 -= 15;
+                    Table.y2 += 60;
+                    Table.xc2 = h.getPx() - 75;
+                    Table.yc2 = h.getPy() - 25;
                     h.setOrient('h');
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                    h.setPx(Mesa.x2 - 60);
-                    h.setPy(Mesa.y2);
-                    Mesa.x2 -= 60;
-                    Mesa.y2 -= 0;
-                    Mesa.xc2 = h.getPx() - 75;
-                    Mesa.yc2 = h.getPy() - 25;
+                    h.setPx(Table.x2 - 60);
+                    h.setPy(Table.y2);
+                    Table.x2 -= 60;
+                    Table.y2 -= 0;
+                    Table.xc2 = h.getPx() - 75;
+                    Table.yc2 = h.getPy() - 25;
                     h.setOrient(mOrientI(h, "horW"));
                     h.setActiva(false);
                     repaint();
                 }
                 if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                    h.setPx(Mesa.x2 - 60);
-                    h.setPy(Mesa.y2 + 30);
-                    Mesa.x2 -= 60;
-                    Mesa.y2 += 30;
-                    Mesa.xc2 = h.getPx() - 75;
-                    Mesa.yc2 = h.getPy() - 25;
+                    h.setPx(Table.x2 - 60);
+                    h.setPy(Table.y2 + 30);
+                    Table.x2 -= 60;
+                    Table.y2 += 30;
+                    Table.xc2 = h.getPx() - 75;
+                    Table.yc2 = h.getPy() - 25;
                     h.setOrient(mOrientI(h, "horW"));
                     h.setActiva(false);
                     repaint();
                 }
 
             } else {
-                if (Mesa.xc2 < iTop && dirD == 1) {
-                    Ficha h3 = cD.get(cD.size() - 3);
+                if (Table.xc2 < iTop && dirD == 1) {
+                    Card h3 = cD.get(cD.size() - 3);
                     if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                        h.setPx(Mesa.x2);
-                        h.setPy(Mesa.y2 + 60);
-                        Mesa.x2 += 0;
-                        Mesa.y2 += 60;
-                        Mesa.xc2 = h.getPx() + 30;
-                        Mesa.yc2 = h.getPy() - 7;
+                        h.setPx(Table.x2);
+                        h.setPy(Table.y2 + 60);
+                        Table.x2 += 0;
+                        Table.y2 += 60;
+                        Table.xc2 = h.getPx() + 30;
+                        Table.yc2 = h.getPy() - 7;
                         h.setOrient(mOrientI(h, "ver"));
                         h.setActiva(false);
                         dirD = 2;
                         repaint();
                     }
                     if (!h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                        h2.setPx(Mesa.x2 + 60);
-                        h2.setPy(Mesa.y2 + 30);
-                        Mesa.x2 += 60;
-                        Mesa.y2 += 30;
+                        h2.setPx(Table.x2 + 60);
+                        h2.setPy(Table.y2 + 30);
+                        Table.x2 += 60;
+                        Table.y2 += 30;
                         h2.setOrient(h2.nextOrienI());
-                        h.setPx(Mesa.x2 - 15);
-                        h.setPy(Mesa.y2 + 60);
-                        Mesa.x2 -= 15;
-                        Mesa.y2 += 60;
-                        Mesa.xc2 = h.getPx() + 60;
-                        Mesa.yc2 = h.getPy() - 25;
+                        h.setPx(Table.x2 - 15);
+                        h.setPy(Table.y2 + 60);
+                        Table.x2 -= 15;
+                        Table.y2 += 60;
+                        Table.xc2 = h.getPx() + 60;
+                        Table.yc2 = h.getPy() - 25;
                         h.setOrient('h');
                         h.setActiva(false);
                         dirD = 2;
                         repaint();
                     }
                     if (h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                        h2.setPx(Mesa.x2 + 60);
-                        h2.setPy(Mesa.y2 + 45);
-                        Mesa.x2 += 60;
-                        Mesa.y2 += 45;
+                        h2.setPx(Table.x2 + 60);
+                        h2.setPy(Table.y2 + 45);
+                        Table.x2 += 60;
+                        Table.y2 += 45;
                         h2.setOrient(h2.nextOrienI());
-                        h.setPx(Mesa.x2 - 15);
-                        h.setPy(Mesa.y2 + 60);
-                        Mesa.x2 -= 15;
-                        Mesa.y2 += 60;
-                        Mesa.xc2 = h.getPx() + 60;
-                        Mesa.yc2 = h.getPy() - 25;
+                        h.setPx(Table.x2 - 15);
+                        h.setPy(Table.y2 + 60);
+                        Table.x2 -= 15;
+                        Table.y2 += 60;
+                        Table.xc2 = h.getPx() + 60;
+                        Table.yc2 = h.getPy() - 25;
                         h.setOrient('h');
                         h.setActiva(false);
                         dirD = 2;
                         repaint();
                     }
                     if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                        h.setPx(Mesa.x2);
-                        h.setPy(Mesa.y2 + 30);
-                        Mesa.x2 += 0;
-                        Mesa.y2 += 30;
-                        Mesa.xc2 = h.getPx() + 30;
-                        Mesa.yc2 = h.getPy() - 7;
+                        h.setPx(Table.x2);
+                        h.setPy(Table.y2 + 30);
+                        Table.x2 += 0;
+                        Table.y2 += 30;
+                        Table.xc2 = h.getPx() + 30;
+                        Table.yc2 = h.getPy() - 7;
                         h.setOrient(mOrientI(h, "ver"));
                         h.setActiva(false);
                         dirD = 2;
                         repaint();
                     }
                 } else {
-                    if (Mesa.xc2 + 75 < dTop && dirD == 2) {
+                    if (Table.xc2 + 75 < dTop && dirD == 2) {
                         if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                            h.setPx(Mesa.x2 + 30);
-                            h.setPy(Mesa.y2 + 15);
-                            Mesa.x2 += 30;
-                            Mesa.y2 += 15;
-                            Mesa.xc2 = h.getPx() + 60;
-                            Mesa.yc2 = h.getPy() - 25;
+                            h.setPx(Table.x2 + 30);
+                            h.setPy(Table.y2 + 15);
+                            Table.x2 += 30;
+                            Table.y2 += 15;
+                            Table.xc2 = h.getPx() + 60;
+                            Table.yc2 = h.getPy() - 25;
                             h.setOrient(mOrientI(h, "horE"));
                             h.setActiva(false);
                             repaint();
                         }
                         if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'h')) {
-                            h.setPx(Mesa.x2 + 60);
-                            h.setPy(Mesa.y2);
-                            Mesa.x2 += 60;
-                            Mesa.y2 += 0;
-                            Mesa.xc2 = h.getPx() + 60;
-                            Mesa.yc2 = h.getPy() - 25;
+                            h.setPx(Table.x2 + 60);
+                            h.setPy(Table.y2);
+                            Table.x2 += 60;
+                            Table.y2 += 0;
+                            Table.xc2 = h.getPx() + 60;
+                            Table.yc2 = h.getPy() - 25;
                             h.setOrient(mOrientI(h, "horE"));
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                            h.setPx(Mesa.x2 + 60);
-                            h.setPy(Mesa.y2 - 15);
-                            Mesa.x2 += 60;
-                            Mesa.y2 -= 15;
-                            Mesa.xc2 = h.getPx() + 30;
-                            Mesa.yc2 = h.getPy() - 7;
+                            h.setPx(Table.x2 + 60);
+                            h.setPy(Table.y2 - 15);
+                            Table.x2 += 60;
+                            Table.y2 -= 15;
+                            Table.xc2 = h.getPx() + 30;
+                            Table.yc2 = h.getPy() - 7;
                             h.setOrient('v');
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                            h.setPx(Mesa.x2 - 15);
-                            h.setPy(Mesa.y2 + 60);
-                            Mesa.x2 -= 15;
-                            Mesa.y2 += 60;
-                            Mesa.xc2 = h.getPx() + 60;
-                            Mesa.yc2 = h.getPy() - 25;
+                            h.setPx(Table.x2 - 15);
+                            h.setPy(Table.y2 + 60);
+                            Table.x2 -= 15;
+                            Table.y2 += 60;
+                            Table.xc2 = h.getPx() + 60;
+                            Table.yc2 = h.getPy() - 25;
                             h.setOrient('h');
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                            h.setPx(Mesa.x2 + 60);
-                            h.setPy(Mesa.y2);
-                            Mesa.x2 += 60;
-                            Mesa.y2 -= 0;
-                            Mesa.xc2 = h.getPx() + 60;
-                            Mesa.yc2 = h.getPy() - 25;
+                            h.setPx(Table.x2 + 60);
+                            h.setPy(Table.y2);
+                            Table.x2 += 60;
+                            Table.y2 -= 0;
+                            Table.xc2 = h.getPx() + 60;
+                            Table.yc2 = h.getPy() - 25;
                             h.setOrient(mOrientI(h, "horE"));
                             h.setActiva(false);
                             repaint();
                         }
                         if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 's' || h2.getOrient() == 'n')) {
-                            h.setPx(Mesa.x2 + 30);
-                            h.setPy(Mesa.y2 + 30);
-                            Mesa.x2 += 30;
-                            Mesa.y2 += 30;
-                            Mesa.xc2 = h.getPx() + 60;
-                            Mesa.yc2 = h.getPy() - 25;
+                            h.setPx(Table.x2 + 30);
+                            h.setPy(Table.y2 + 30);
+                            Table.x2 += 30;
+                            Table.y2 += 30;
+                            Table.xc2 = h.getPx() + 60;
+                            Table.yc2 = h.getPy() - 25;
                             h.setOrient(mOrientI(h, "horE"));
                             h.setActiva(false);
                             repaint();
                         }
 
                     } else {
-                        if (Mesa.xc2 + 75 > dTop && dirD == 2) {
-                            Ficha h3 = cD.get(cD.size() - 3);
+                        if (Table.xc2 + 75 > dTop && dirD == 2) {
+                            Card h3 = cD.get(cD.size() - 3);
                             if (h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'v')) {
-                                h.setPx(Mesa.x2);
-                                h.setPy(Mesa.y2 + 60);
-                                Mesa.x2 += 0;
-                                Mesa.y2 += 60;
-                                Mesa.xc2 = h.getPx() - 75;
-                                Mesa.yc2 = h.getPy() - 7;
+                                h.setPx(Table.x2);
+                                h.setPy(Table.y2 + 60);
+                                Table.x2 += 0;
+                                Table.y2 += 60;
+                                Table.xc2 = h.getPx() - 75;
+                                Table.yc2 = h.getPy() - 7;
                                 h.setOrient(mOrientI(h, "ver"));
                                 h.setActiva(false);
                                 dirD = 1;
                                 repaint();
                             }
                             if (!h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                                h2.setPx(Mesa.x2 - 30);
-                                h2.setPy(Mesa.y2 + 30);
-                                Mesa.x2 -= 30;
-                                Mesa.y2 += 30;
+                                h2.setPx(Table.x2 - 30);
+                                h2.setPy(Table.y2 + 30);
+                                Table.x2 -= 30;
+                                Table.y2 += 30;
                                 h2.setOrient(h2.nextOrienD());
-                                h.setPx(Mesa.x2 - 15);
-                                h.setPy(Mesa.y2 + 60);
-                                Mesa.x2 -= 15;
-                                Mesa.y2 += 60;
-                                Mesa.xc2 = h.getPx() - 75;
-                                Mesa.yc2 = h.getPy() - 25;
+                                h.setPx(Table.x2 - 15);
+                                h.setPy(Table.y2 + 60);
+                                Table.x2 -= 15;
+                                Table.y2 += 60;
+                                Table.xc2 = h.getPx() - 75;
+                                Table.yc2 = h.getPy() - 25;
                                 h.setOrient('h');
                                 h.setActiva(false);
                                 dirD = 1;
                                 repaint();
                             }
                             if (h3.isDoble() && !h2.isDoble() && h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                                h2.setPx(Mesa.x2 - 30);
-                                h2.setPy(Mesa.y2 + 45);
-                                Mesa.x2 -= 30;
-                                Mesa.y2 += 45;
+                                h2.setPx(Table.x2 - 30);
+                                h2.setPy(Table.y2 + 45);
+                                Table.x2 -= 30;
+                                Table.y2 += 45;
                                 h2.setOrient(h2.nextOrienD());
-                                h.setPx(Mesa.x2 - 15);
-                                h.setPy(Mesa.y2 + 60);
-                                Mesa.x2 -= 15;
-                                Mesa.y2 += 60;
-                                Mesa.xc2 = h.getPx() - 75;
-                                Mesa.yc2 = h.getPy() - 25;
+                                h.setPx(Table.x2 - 15);
+                                h.setPy(Table.y2 + 60);
+                                Table.x2 -= 15;
+                                Table.y2 += 60;
+                                Table.xc2 = h.getPx() - 75;
+                                Table.yc2 = h.getPy() - 25;
                                 h.setOrient('h');
                                 h.setActiva(false);
                                 dirD = 1;
                                 repaint();
                             }
                             if (!h2.isDoble() && !h.isDoble() && (h2.getOrient() == 'e' || h2.getOrient() == 'w')) {
-                                h.setPx(Mesa.x2 + 30);
-                                h.setPy(Mesa.y2 + 30);
-                                Mesa.x2 += 30;
-                                Mesa.y2 += 30;
-                                Mesa.xc2 = h.getPx() - 75;
-                                Mesa.yc2 = h.getPy() - 7;
+                                h.setPx(Table.x2 + 30);
+                                h.setPy(Table.y2 + 30);
+                                Table.x2 += 30;
+                                Table.y2 += 30;
+                                Table.xc2 = h.getPx() - 75;
+                                Table.yc2 = h.getPy() - 7;
                                 h.setOrient(mOrientI(h, "ver"));
                                 h.setActiva(false);
                                 dirD = 1;
@@ -1736,10 +1736,10 @@ public class Animadora extends JPanel {
                     for (int i = 0; i < cI.size(); i++) {
                         cI.get(i).setPy(cI.get(i).getPy() - 2);
                     }
-                    Mesa.y -= 2;
-                    Mesa.y2 -= 2;
-                    Mesa.yc1 -= 2;
-                    Mesa.yc2 -= 2;
+                    Table.y -= 2;
+                    Table.y2 -= 2;
+                    Table.yc1 -= 2;
+                    Table.yc2 -= 2;
                 }
             }
         }
@@ -1766,11 +1766,11 @@ public class Animadora extends JPanel {
 
     public void animaFichaI() {
         qAnim = 1;
-        Ficha h = cI.get(cI.size() - 1);
+        Card h = cI.get(cI.size() - 1);
         double x1 = h.getPx();
         double y1 = h.getPy();
-        double x2 = Mesa.x;
-        double y2 = Mesa.y;
+        double x2 = Table.x;
+        double y2 = Table.y;
         if (x2 - x1 != 0) {
             double m = (y2 - y1) / (x2 - x1);
             int n = (int) (y1 - m * x1);
@@ -1848,11 +1848,11 @@ public class Animadora extends JPanel {
 
     public void animaFichaD() {
         qAnim = 2;
-        Ficha h = cD.get(cD.size() - 1);
+        Card h = cD.get(cD.size() - 1);
         double x1 = h.getPx();
         double y1 = h.getPy();
-        double x2 = Mesa.x2;
-        double y2 = Mesa.y2;
+        double x2 = Table.x2;
+        double y2 = Table.y2;
         if (x2 - x1 != 0) {
             double m = (y2 - y1) / (x2 - x1);
             int n = (int) (y1 - m * x1);
@@ -1964,12 +1964,12 @@ public class Animadora extends JPanel {
     public void muestraPunt() {
         media.PlayAudio(2);
         if ((haDominado(fich) || haDominado(fichA)) && cantPases < 4) {
-            puntU += Mesa.getPm().getJ1().cuenta() + Mesa.getPm().getJ2().cuenta();
+            puntU += Table.getPm().getJ1().cuenta() + Table.getPm().getJ2().cuenta();
             datas += 1;
             turn = 1;
         } else {
             if ((haDominado(fichJ1) || haDominado(fichJ2)) && cantPases < 4) {
-                puntM += Mesa.getPu().getU().cuenta() + Mesa.getPu().getA().cuenta();
+                puntM += Table.getPu().getU().cuenta() + Table.getPu().getA().cuenta();
                 datas += 1;
                 Random ra = new Random();
                 int w = ra.nextInt(4);
@@ -1982,13 +1982,13 @@ public class Animadora extends JPanel {
             } else {
                 if (!haDominado(fich) && !haDominado(fichA) && !haDominado(fichJ1) && !haDominado(fichJ2) && cantPases >= 4) {
 
-                    int pm1 = Mesa.getPm().getJ1().cuenta();
+                    int pm1 = Table.getPm().getJ1().cuenta();
 
-                    int pm2 = Mesa.getPm().getJ2().cuenta();
+                    int pm2 = Table.getPm().getJ2().cuenta();
 
-                    int pu = Mesa.getPu().getU().cuenta();
+                    int pu = Table.getPu().getU().cuenta();
 
-                    int puA = Mesa.getPu().getA().cuenta();
+                    int puA = Table.getPu().getA().cuenta();
 
                     if ((pm1 < pu && pm1 < puA) || (pm2 < pu && pm2 < puA)) {
 
@@ -2015,16 +2015,16 @@ public class Animadora extends JPanel {
             }
         }
         if (puntU >= punt || puntM >= punt) {
-            Mesa.getPu().getA().virarse('c');
-            Mesa.getPm().getJ1().virarse('m');
-            Mesa.getPm().getJ2().virarse('m');
+            Table.getPu().getA().virarse('c');
+            Table.getPm().getJ1().virarse('m');
+            Table.getPm().getJ2().virarse('m');
             repaint();
             Main.muestraPunt(2, puntU, puntM, datas);
             Main.abilita(1);
         } else {
-            Mesa.getPu().getA().virarse('c');
-            Mesa.getPm().getJ1().virarse('m');
-            Mesa.getPm().getJ2().virarse('m');
+            Table.getPu().getA().virarse('c');
+            Table.getPm().getJ1().virarse('m');
+            Table.getPm().getJ2().virarse('m');
             repaint();
             Main.muestraPunt(1, puntU, puntM, datas);
             cargaParcial();
@@ -2043,7 +2043,7 @@ public class Animadora extends JPanel {
         private javax.swing.JButton OK;
         private javax.swing.JLabel paim;
         private Comp pa;
-        private Ficha f;
+        private Card f;
 
         public ParImpar() {
             diseño();
@@ -2057,7 +2057,7 @@ public class Animadora extends JPanel {
             impar = new javax.swing.JButton("impar");
             OK = new javax.swing.JButton("OK");
             OK.setVisible(false);
-            f = Animadora.getSobra()[ra.nextInt(15)];
+            f = Animation.getSobra()[ra.nextInt(15)];
             f.setOrient('a');
             par.addActionListener(new java.awt.event.ActionListener() {
 
@@ -2113,15 +2113,15 @@ public class Animadora extends JPanel {
             pa.repaint();
             if (f.getSum() % 2 == 0) {
                 paim.setText("¡Acertaste es par, comience Ud!");
-                Animadora.turn = 1;
+                Animation.turn = 1;
             } else {
                 paim.setText("¡Fallaste es impar, comienza la máquina!");
                 Random ra = new Random();
                 int w = ra.nextInt(4);
                 if (w < 2) {
-                    Animadora.turn = 2;
+                    Animation.turn = 2;
                 } else {
-                    Animadora.turn = 4;
+                    Animation.turn = 4;
 
                 }
             }
@@ -2142,14 +2142,14 @@ public class Animadora extends JPanel {
                 Random ra = new Random();
                 int w = ra.nextInt(4);
                 if (w < 2) {
-                    Animadora.turn = 2;
+                    Animation.turn = 2;
                 } else {
-                    Animadora.turn = 4;
+                    Animation.turn = 4;
 
                 }
             } else {
                 paim.setText("¡Acertaste es impar, comience Ud!");
-                Animadora.turn = 1;
+                Animation.turn = 1;
             }
             par.setVisible(false);
             impar.setVisible(false);

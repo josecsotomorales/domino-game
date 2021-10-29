@@ -2,22 +2,22 @@
  *@author: Jose Soto
  */
 import java.util.ArrayList;
-public class BotaGorda extends Jugador { 
+public class Greedy extends Player {
     private int numero;
-    public BotaGorda(int i){
+    public Greedy(int i){
         numero=i;
     }
-    public FichaJ juega() {
+    public CardPlayer juega() {
         
-        ArrayList<FichaJ> pc = new ArrayList<FichaJ>();
+        ArrayList<CardPlayer> pc = new ArrayList<CardPlayer>();
         int i = 0;
         fj = null;
-        if (Animadora.cI.size() == 0) {
-            fj = new FichaJ(data.get(i), 1);
+        if (Animation.cI.size() == 0) {
+            fj = new CardPlayer(data.get(i), 1);
             i++;
             while (i < 10) {
                 if (data.get(i).getSum() > fj.getFicha().getSum()) {
-                    fj = new FichaJ(data.get(i), 1);
+                    fj = new CardPlayer(data.get(i), 1);
                     i++;
                 } else {
                     i++;
@@ -27,11 +27,11 @@ public class BotaGorda extends Jugador {
         } else {
             while (i < 10) {
                 if (data.get(i).esActiva() && !super.esForro(data.get(i), 1)) {
-                    pc.add(new FichaJ(data.get(i), 1));
+                    pc.add(new CardPlayer(data.get(i), 1));
                     i++;
                 } else {
                     if (data.get(i).esActiva() && !super.esForro(data.get(i), 2)) {
-                        pc.add(new FichaJ(data.get(i), 2));
+                        pc.add(new CardPlayer(data.get(i), 2));
                         i++;
                     } else {
                         i++;
