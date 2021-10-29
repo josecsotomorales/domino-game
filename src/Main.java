@@ -19,84 +19,84 @@ import javax.swing.UIManager;
  */
 class Main extends JFrame {
 
-    static String nombreU = "",  parejaSel = "";
-    static int punt;
+    static String userName = "",  userTeam = "";
+    static int score;
     private final Media media = new Media();
-    static javax.swing.JMenuItem aDeDom;
-    static javax.swing.JMenuItem verP;
-    static javax.swing.JMenuItem nuevoJ;
-    static javax.swing.JMenuItem sucesos;
-    private javax.swing.JButton continuar;
-    static javax.swing.JButton jugDN;
-    static javax.swing.JButton salida;
+    static javax.swing.JMenuItem dom;
+    static javax.swing.JMenuItem checkScore;
+    static javax.swing.JMenuItem newGame;
+    static javax.swing.JMenuItem moves;
+    private javax.swing.JButton continueGame;
+    static javax.swing.JButton startNewGame;
+    static javax.swing.JButton start;
     static javax.swing.JButton OK;
-    private javax.swing.JTextField nombre;
-    private javax.swing.JSpinner pM;
-    static javax.swing.JComboBox<String> pareja;
-    private static javax.swing.JTable tabla;
+    private javax.swing.JTextField name;
+    private javax.swing.JSpinner teamMachine;
+    static javax.swing.JComboBox<String> team;
+    private static javax.swing.JTable table;
     private static javax.swing.JDialog dialog;
-    static Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-    static int w = (int) (pantalla.getWidth());
-    static int h = (int) (pantalla.getHeight());
+    static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    static int w = (int) (screen.getWidth());
+    static int h = (int) (screen.getHeight());
     private Animation f;
 
     public Main() {
 
-        diseno();
-        animacion();
+        design();
+        animation();
     }
 
-    private void animacion() {
+    private void animation() {
         f = new Animation();
         this.add(f);
         f.setBounds(-2, -29, 800, 600);
-        DibujaInicio t = new DibujaInicio();
+        DesignStart t = new DesignStart();
         t.start();
-        MuestraConfig t1 = new MuestraConfig();
+        ShowConfig t1 = new ShowConfig();
         t1.start();
         setVisible(true);
     }
 
-    public void diseno() {
+    public void design() {
 
         
         dialog = new javax.swing.JDialog();
         dialog.setModal(true);
-        tabla = new javax.swing.JTable();
-        tabla.setShowHorizontalLines(false);
-        nombre = new javax.swing.JTextField();
-        nombre.setFont(new java.awt.Font("Arial Black", 0, 32));
-        nombre.setText("User");
-        nombre.setOpaque(false);
-        nombre.selectAll();
-        nombre.setVisible(false);
-        pM = new javax.swing.JSpinner();
-        pM.setFont(new java.awt.Font("Arial Black", 0, 40));
-        pM.setModel(new javax.swing.SpinnerNumberModel(100, 10, 250, 10));
-        pM.setVisible(false);
-        pareja = new javax.swing.JComboBox<String>();
-        pareja.addItem("Greedy");
-        pareja.addItem("Ally");
-        pareja.addItem("Domineering");
-        pareja.setForeground(new java.awt.Color(0, 0, 0));
-        pareja.setFont(new java.awt.Font("Arial Black", 0, 20));
-        pareja.setVisible(false);
-        continuar = new javax.swing.JButton();
-        continuar.setOpaque(false);
-        jugDN = new javax.swing.JButton("Play Again");
-        salida = new javax.swing.JButton("Cancel");
+        table = new javax.swing.JTable();
+        table.setShowHorizontalLines(false);
+        name = new javax.swing.JTextField();
+        name.setFont(new java.awt.Font("Arial Black", 0, 32));
+        name.setText("User");
+        name.setOpaque(false);
+        name.selectAll();
+        name.setVisible(false);
+        teamMachine = new javax.swing.JSpinner();
+        teamMachine.setFont(new java.awt.Font("Arial Black", 0, 40));
+        teamMachine.setModel(new javax.swing.SpinnerNumberModel(100, 10, 250, 10));
+        teamMachine.setVisible(false);
+        team = new javax.swing.JComboBox<String>();
+        team.addItem("Greedy");
+        team.addItem("Ally");
+        team.addItem("Domineering");
+        team.setForeground(new java.awt.Color(0, 0, 0));
+        team.setFont(new java.awt.Font("Arial Black", 0, 20));
+        team.setVisible(false);
+        continueGame = new javax.swing.JButton();
+        continueGame.setOpaque(false);
+        startNewGame = new javax.swing.JButton("Play Again");
+        start = new javax.swing.JButton("Cancel");
         OK = new javax.swing.JButton("OK");
         OK.setVisible(false);
         javax.swing.JSeparator sep = new javax.swing.JSeparator();
         javax.swing.JMenuBar jMenuBar1 = new javax.swing.JMenuBar();
-        javax.swing.JMenu juego = new javax.swing.JMenu();
-        javax.swing.JMenu ayuda = new javax.swing.JMenu();
-        aDeDom = new javax.swing.JMenuItem();
-        nuevoJ = new javax.swing.JMenuItem();
-        verP = new javax.swing.JMenuItem();
-        sucesos = new javax.swing.JMenuItem();
-        javax.swing.JMenuItem salir = new javax.swing.JMenuItem();
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        javax.swing.JMenu game = new javax.swing.JMenu();
+        javax.swing.JMenu help = new javax.swing.JMenu();
+        dom = new javax.swing.JMenuItem();
+        newGame = new javax.swing.JMenuItem();
+        checkScore = new javax.swing.JMenuItem();
+        moves = new javax.swing.JMenuItem();
+        javax.swing.JMenuItem exit = new javax.swing.JMenuItem();
+        table.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                     {null, null}, {null, null}, {null, null}, {null, null},
                     {null, null}, {null, null}, {null, null}, {null, null},
@@ -119,25 +119,25 @@ class Main extends JFrame {
         dialog.setLayout(null);
         dialog.add(OK);
         OK.setBounds(95, 250, 60, 25);
-        dialog.add(jugDN);
-        jugDN.setBounds(5, 250, 120, 25);
-        dialog.add(salida);
-        salida.setBounds(128, 250, 90, 25);
-        dialog.add(tabla);
-        tabla.setBounds(0, 0, 250, 320);
+        dialog.add(startNewGame);
+        startNewGame.setBounds(5, 250, 120, 25);
+        dialog.add(start);
+        start.setBounds(128, 250, 90, 25);
+        dialog.add(table);
+        table.setBounds(0, 0, 250, 320);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setSize(800, 624);
         this.setLocation((w - 800) / 2, (h - 624) / 2);
         this.setResizable(false);
         this.setIconImage(Objects.requireNonNull(Media.cIcon("cards/wit.png")).getImage());
         this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        sucesos.addActionListener(new java.awt.event.ActionListener() {
+        moves.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked8(evt);
             }
         });
-        salida.addActionListener(new java.awt.event.ActionListener() {
+        start.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked5(evt);
@@ -149,266 +149,250 @@ class Main extends JFrame {
                 clicked5(evt);
             }
         });
-        jugDN.addActionListener(new java.awt.event.ActionListener() {
+        startNewGame.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked12(evt);
             }
         });
-        nuevoJ.addActionListener(new java.awt.event.ActionListener() {
+        newGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked1(evt);
             }
         });
-        continuar.addActionListener(new java.awt.event.ActionListener() {
+        continueGame.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked2(evt);
             }
         });
-        salir.addActionListener(new java.awt.event.ActionListener() {
+        exit.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked3(evt);
             }
         });
-        verP.addActionListener(new java.awt.event.ActionListener() {
+        checkScore.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked4(evt);
             }
         });
-        aDeDom.addActionListener(new java.awt.event.ActionListener() {
+        dom.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clicked6(evt);
             }
         });
-        sucesos.addMouseListener(new java.awt.event.MouseAdapter() {
+        moves.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 enterM(evt);
             }
         });
-        nuevoJ.addMouseListener(new java.awt.event.MouseAdapter() {
+        newGame.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 enterM(evt);
             }
         });
-        verP.addMouseListener(new java.awt.event.MouseAdapter() {
+        checkScore.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 enterM(evt);
             }
         });
-        salir.addMouseListener(new java.awt.event.MouseAdapter() {
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 enterM(evt);
             }
         });
-        continuar.addMouseListener(new java.awt.event.MouseAdapter() {
+        continueGame.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 enterM(evt);
             }
         });
-        aDeDom.addMouseListener(new java.awt.event.MouseAdapter() {
+        dom.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 enterM(evt);
             }
         });
-        aDeDom.setText("About");
-        sucesos.setText("Moves");
-        sucesos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        sucesos.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
-        sucesos.setEnabled(false);
-        verP.setText("Score");
-        verP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        verP.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
-        verP.setEnabled(false);
-        salir.setText("Exit");
-        salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
-        salir.setIcon(Media.cIcon("buttons/salir.png"));
-        nuevoJ.setText("New Game");
-        nuevoJ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        nuevoJ.setIcon(Media.cIcon("buttons/reini.png"));
-        aDeDom.setIcon(Media.cIcon("cards/wit.png"));
-        juego.setText("Game");
-        ayuda.setText("Help");
-        juego.setIcon(Media.cIcon("buttons/system-run.png"));
+        dom.setText("About");
+        moves.setText("Moves");
+        moves.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        moves.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
+        moves.setEnabled(false);
+        checkScore.setText("Score");
+        checkScore.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        checkScore.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
+        checkScore.setEnabled(false);
+        exit.setText("Exit");
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
+        exit.setIcon(Media.cIcon("buttons/exit.png"));
+        newGame.setText("New Game");
+        newGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        newGame.setIcon(Media.cIcon("buttons/restart.png"));
+        dom.setIcon(Media.cIcon("cards/wit.png"));
+        game.setText("Game");
+        help.setText("Help");
+        game.setIcon(Media.cIcon("buttons/system-run.png"));
         this.setTitle("Domino Game");
-        jMenuBar1.add(juego);
-        jMenuBar1.add(ayuda);
-        ayuda.add(aDeDom);
-        juego.add(nuevoJ);
-        juego.add(verP);
-        juego.add(sucesos);
-        juego.add(sep);
-        juego.add(salir);
+        jMenuBar1.add(game);
+        jMenuBar1.add(help);
+        help.add(dom);
+        game.add(newGame);
+        game.add(checkScore);
+        game.add(moves);
+        game.add(sep);
+        game.add(exit);
 
         this.setLayout(null);
-        this.add(nombre);
-        nombre.setBounds(416, 177, 150, 50);
-        this.add(pM);
-        pM.setBounds(416, 266, 150, 50);
-        this.add(pareja);
-        pareja.setBounds(416, 229, 150, 35);
-        this.add(continuar);
-        continuar.setVisible(false);
-        continuar.setBackground(Color.RED);
-        continuar.setBorder(null);
-        continuar.setBorderPainted(false);
-        continuar.setRolloverIcon(Media.cIcon("buttons/continuar1a.png"));
-        continuar.setIcon(Media.cIcon("buttons/continuar1.png"));
-        continuar.setBounds(328, 321, 140, 48);
+        this.add(name);
+        name.setBounds(416, 177, 150, 50);
+        this.add(teamMachine);
+        teamMachine.setBounds(416, 266, 150, 50);
+        this.add(team);
+        team.setBounds(416, 229, 150, 35);
+        this.add(continueGame);
+        continueGame.setVisible(false);
+        continueGame.setBackground(Color.RED);
+        continueGame.setBorder(null);
+        continueGame.setBorderPainted(false);
+        continueGame.setRolloverIcon(Media.cIcon("buttons/continue1a.png"));
+        continueGame.setIcon(Media.cIcon("buttons/continue1.png"));
+        continueGame.setBounds(328, 321, 140, 48);
         setJMenuBar(jMenuBar1);
 
     }
 
 
-    class MuestraConfig extends Thread {
-
+    class ShowConfig extends Thread {
         public void run() {
-
-            f.muestraConfig();
-            continuar.setVisible(true);
-            nombre.setVisible(true);
-            pM.setVisible(true);
-            pM.setValue(100);
-            pareja.setVisible(true);
+            f.showConfig();
+            continueGame.setVisible(true);
+            name.setVisible(true);
+            teamMachine.setVisible(true);
+            teamMachine.setValue(100);
+            team.setVisible(true);
 
         }
     }
 
-    class DibujaInicio extends Thread {
-
+    class DesignStart extends Thread {
         public void run() {
-
-
-            f.dibujaInicio();
-
+            f.designStart();
         }
     }
 
     public void clicked12(java.awt.event.ActionEvent evt) {
         dialog.setVisible(false);
-
-        f.Carga(1);
-
-        DibujaInicio t = new DibujaInicio();
+        f.Load(1);
+        DesignStart t = new DesignStart();
         t.start();
-        MuestraConfig t1 = new MuestraConfig();
+        ShowConfig t1 = new ShowConfig();
         t1.start();
-        pareja.setSelectedIndex(0);
-
+        team.setSelectedIndex(0);
     }
 
     public void clicked1(java.awt.event.ActionEvent evt) {
         int r = JOptionPane.showConfirmDialog(this, "You want to leave?", "Warning", JOptionPane.YES_NO_OPTION);
         if (r == JOptionPane.YES_OPTION) {
-
-            f.Carga(1);
-            DibujaInicio t = new DibujaInicio();
+            f.Load(1);
+            DesignStart t = new DesignStart();
             t.start();
-            MuestraConfig t1 = new MuestraConfig();
+            ShowConfig t1 = new ShowConfig();
             t1.start();
-            pareja.setSelectedIndex(0);
+            team.setSelectedIndex(0);
         }
     }
 
-    class OcultaConfig extends Thread {
+    class HideConfig extends Thread {
 
         public void run() {
-            continuar.setVisible(false);
-            nombre.setVisible(false);
-            pM.setVisible(false);
-            pareja.setVisible(false);
-            f.ocultaConfig();
+            continueGame.setVisible(false);
+            name.setVisible(false);
+            teamMachine.setVisible(false);
+            team.setVisible(false);
+            f.hideConfig();
         }
     }
 
-    class DibujaMesa extends Thread {
-
+    class DesignTable extends Thread {
         public void run() {
-
-            f.dibujaMesa(0);
-
+            f.designTable(0);
         }
     }
 
-    public static void abilita(int i) {
-        nuevoJ.setEnabled(true);
-        verP.setEnabled(true);
-        aDeDom.setEnabled(true);
-        sucesos.setEnabled(true);
+    public static void enableMenu(int i) {
+        newGame.setEnabled(true);
+        checkScore.setEnabled(true);
+        dom.setEnabled(true);
+        moves.setEnabled(true);
 
     }
 
-    public static void desabilita() {
-        nuevoJ.setEnabled(false);
-        verP.setEnabled(false);
-        aDeDom.setEnabled(false);
-        sucesos.setEnabled(false);
+    public static void disableMenu() {
+        newGame.setEnabled(false);
+        checkScore.setEnabled(false);
+        dom.setEnabled(false);
+        moves.setEnabled(false);
 
     }
 
-    public static void muestraPunt(int tipo, int v1, int v2, int fil) {
+    public static void showScore(int tipo, int v1, int v2, int fil) {
 
         dialog.setLocation((w - 250) / 2, (h - 320) / 2);
         dialog.setResizable(false);
         dialog.setSize(250, 320);
-        tabla.setValueAt(nombreU + "/" + parejaSel, 0, 0);
-        tabla.setValueAt("Machine-1/Machine-2", 0, 1);
+        table.setValueAt(userName + "/" + userTeam, 0, 0);
+        table.setValueAt("Machine-1/Machine-2", 0, 1);
         if (tipo == 1) {
-            jugDN.setVisible(false);
-            salida.setVisible(false);
+            startNewGame.setVisible(false);
+            start.setVisible(false);
             OK.setVisible(true);
             dialog.setTitle("Score");
-            tabla.setValueAt(v1, fil, 0);
-            tabla.setValueAt(v2, fil, 1);
-            dialog.setVisible(true);
+            table.setValueAt(v1, fil, 0);
+            table.setValueAt(v2, fil, 1);
         } else {
             if (tipo == 2) {
-
-                jugDN.setVisible(true);
-                salida.setVisible(true);
+                startNewGame.setVisible(true);
+                start.setVisible(true);
                 OK.setVisible(false);
                 dialog.setTitle("Game Over");
-                tabla.setValueAt(v1, fil, 0);
-                tabla.setValueAt(v2, fil, 1);
+                table.setValueAt(v1, fil, 0);
+                table.setValueAt(v2, fil, 1);
                 if (v1 > v2) {
-                    tabla.setValueAt("Winner", fil + 1, 0);
+                    table.setValueAt("Winner", fil + 1, 0);
                 } else {
-                    tabla.setValueAt("Winner", fil + 1, 1);
+                    table.setValueAt("Winner", fil + 1, 1);
                 }
-                dialog.setVisible(true);
             } else {
                 dialog.setTitle("Score");
-                jugDN.setVisible(false);
-                salida.setVisible(false);
+                startNewGame.setVisible(false);
+                start.setVisible(false);
                 OK.setVisible(true);
-                dialog.setVisible(true);
             }
         }
+        dialog.setVisible(true);
 
 
     }
 
     public void clicked2(java.awt.event.ActionEvent evt) {
-        for (int i = 1; i < tabla.getRowCount(); i++) {
-            tabla.setValueAt("", i, 0);
-            tabla.setValueAt("", i, 1);
+        for (int i = 1; i < table.getRowCount(); i++) {
+            table.setValueAt("", i, 0);
+            table.setValueAt("", i, 1);
         }
-        punt = (Integer) pM.getValue();
-        nombreU = nombre.getText();
-        parejaSel = (String) pareja.getSelectedItem();
-        f.Carga(pareja.getSelectedIndex());
-        OcultaConfig t2 = new OcultaConfig();
+        score = (Integer) teamMachine.getValue();
+        userName = name.getText();
+        userTeam = (String) team.getSelectedItem();
+        f.Load(team.getSelectedIndex());
+        HideConfig t2 = new HideConfig();
         t2.start();
-        DibujaMesa t4 = new DibujaMesa();
+        DesignTable t4 = new DesignTable();
         t4.start();
 
 
@@ -419,7 +403,7 @@ class Main extends JFrame {
     }
 
     public void clicked4(java.awt.event.ActionEvent evt) {
-        muestraPunt(3, 0, 0, 0);
+        showScore(3, 0, 0, 0);
     }
 
     private void enterM(java.awt.event.MouseEvent evt) {
@@ -433,24 +417,23 @@ class Main extends JFrame {
     }
 
     private void clicked6(ActionEvent evt) {
-        KDialog pi = new KDialog();
+        Dialog pi = new Dialog();
         pi.setVisible(true);
     }
 
-    static class KDialog extends javax.swing.JDialog {
-
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        int w = (int) (pantalla.getWidth());
-        int h = (int) (pantalla.getHeight());
+    static class Dialog extends javax.swing.JDialog {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int w = (int) (screenSize.getWidth());
+        int h = (int) (screenSize.getHeight());
         private javax.swing.JButton OK;
 
-        public KDialog() {
+        public Dialog() {
             design();
         }
 
         public void design() {
             OK = new javax.swing.JButton("OK");
-            KPanel kp = new KPanel();
+            Panel kp = new Panel();
 
             this.setTitle("About");
             this.setIconImage(Objects.requireNonNull(Media.cIcon("cards/wit.png")).getImage());
@@ -466,7 +449,6 @@ class Main extends JFrame {
             this.add(kp);
             kp.setBounds(0, 0, 300, 150);
             OK.addActionListener(new java.awt.event.ActionListener() {
-
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     clicked7(evt);
                 }
@@ -479,16 +461,16 @@ class Main extends JFrame {
             this.setVisible(false);
         }
 
-        class KPanel extends JPanel {
+        class Panel extends JPanel {
 
             private int x1,  x2,  x3;
 
-            public KPanel() {
+            public Panel() {
                 x1 = -130;
                 x2 = -130;
                 x3 = -130;
                 present = Objects.requireNonNull(Media.cIcon("parts/present.jpg")).getImage();
-                KThread kt = new KThread();
+                GameThread kt = new GameThread();
                 kt.start();
                 repaint();
             }
@@ -536,8 +518,7 @@ class Main extends JFrame {
                 OK.setVisible(true);
             }
 
-            class KThread extends Thread {
-
+            class GameThread extends Thread {
                 public void run() {
                     anim();
                 }

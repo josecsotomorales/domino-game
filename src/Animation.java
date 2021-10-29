@@ -72,7 +72,7 @@ public class Animation extends JPanel {
         mesa = Objects.requireNonNull(Media.cIcon("parts/mesa.png")).getImage();
         tabla1 = Objects.requireNonNull(Media.cIcon("parts/tabla1.gif")).getImage();
         color = new Color(0, 0, 10, 190);
-        Carga(1);
+        Load(1);
 
 
     }
@@ -145,7 +145,7 @@ public class Animation extends JPanel {
         return ori;
     }
 
-    public void Carga(int i) {
+    public void Load(int i) {
 
         qAnim = 0;
         datas = 0;
@@ -197,7 +197,7 @@ public class Animation extends JPanel {
         return sobra;
     }
 
-    public void dibujaInicio() {
+    public void designStart() {
         pxg = 850;
         for (int i = 0; i < fich.size(); i++) {
             fich.get(i).setPy(600);
@@ -219,7 +219,7 @@ public class Animation extends JPanel {
 
     }
 
-    public void muestraConfig() {
+    public void showConfig() {
 
         while (yco > 200) {
             yco -= 40;
@@ -230,12 +230,12 @@ public class Animation extends JPanel {
             }
         }
         yco -= 2;
-        Main.desabilita();
+        Main.disableMenu();
         repaint();
 
     }
 
-    public void ocultaConfig() {
+    public void hideConfig() {
         yco = 198;
         while (yco < 600) {
             yco += 40;
@@ -247,13 +247,13 @@ public class Animation extends JPanel {
         }
     }
 
-    public void dibujaMesa(int oc) {
+    public void designTable(int oc) {
 
-        nombreU = Main.nombreU;
+        nombreU = Main.userName;
         parejaSel = Team.getA().toString();
         maquina1 = "M1" + Team.getJ2().toString().substring(0, 3);
         maquina2 = "M2" + Team.getJ1().toString().substring(0, 3);
-        punt = Main.punt;
+        punt = Main.score;
         ypr = 600;
         repaint();
         for (int i = 0; i < fich.size(); i++) {
@@ -418,7 +418,7 @@ public class Animation extends JPanel {
         if (Team.getU().lleva()) {
             cantPases = 0;
             doWindowEvt();
-            Main.abilita(0);
+            Main.enableMenu(0);
         } else {
             turn = 2;
             cantPases += 1;
@@ -751,8 +751,8 @@ public class Animation extends JPanel {
         g2.setColor(new Color(255, 0, 0, 200));
         g2.fillRoundRect(xPase - 5, 283, 450, 60, 12, 12);
         g2.setColor(Color.YELLOW);
-        String pase = "PASS ";
-        g2.drawString(pase + compl, xPase, 330);
+        String passed = "Passed ";
+        g2.drawString(passed + compl, xPase, 330);
 
         g.drawImage(I, 0, 0, this);
         g2.setColor(Color.WHITE);
@@ -1942,7 +1942,7 @@ public class Animation extends JPanel {
 
         public void run() {
             destroyEvt();
-            Main.desabilita();
+            Main.disableMenu();
             if (!haDominado(fich) && !haDominado(fichA) && !haDominado(fichJ1) && !haDominado(fichJ2) && cantPases != 4) {
 
 
@@ -2022,14 +2022,14 @@ public class Animation extends JPanel {
             Team.getJ1().virarse('m');
             Team.getJ2().virarse('m');
             repaint();
-            Main.muestraPunt(2, puntU, puntM, datas);
-            Main.abilita(1);
+            Main.showScore(2, puntU, puntM, datas);
+            Main.enableMenu(1);
         } else {
             Team.getA().virarse('c');
             Team.getJ1().virarse('m');
             Team.getJ2().virarse('m');
             repaint();
-            Main.muestraPunt(1, puntU, puntM, datas);
+            Main.showScore(1, puntU, puntM, datas);
             cargaParcial();
             DibujaFichas rep = new DibujaFichas();
             rep.start();
