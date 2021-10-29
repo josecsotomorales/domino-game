@@ -66,7 +66,7 @@ class Main extends JFrame {
         tabla.setShowHorizontalLines(false);
         nombre = new javax.swing.JTextField();
         nombre.setFont(new java.awt.Font("Arial Black", 0, 32));
-        nombre.setText("Usuario");
+        nombre.setText("User");
         nombre.setOpaque(false);
         nombre.selectAll();
         nombre.setVisible(false);
@@ -75,16 +75,16 @@ class Main extends JFrame {
         pM.setModel(new javax.swing.SpinnerNumberModel(100, 10, 250, 10));
         pM.setVisible(false);
         pareja = new javax.swing.JComboBox<String>();
-        pareja.addItem("Botagorda");
-        pareja.addItem("Aliado");
-        pareja.addItem("Dominador");
+        pareja.addItem("Greedy");
+        pareja.addItem("Ally");
+        pareja.addItem("Domineering");
         pareja.setForeground(new java.awt.Color(0, 0, 0));
         pareja.setFont(new java.awt.Font("Arial Black", 0, 20));
         pareja.setVisible(false);
         continuar = new javax.swing.JButton();
         continuar.setOpaque(false);
-        jugDN = new javax.swing.JButton("Jugar de nuevo");
-        salida = new javax.swing.JButton("Cancelar");
+        jugDN = new javax.swing.JButton("Play Again");
+        salida = new javax.swing.JButton("Cancel");
         OK = new javax.swing.JButton("OK");
         OK.setVisible(false);
         javax.swing.JSeparator sep = new javax.swing.JSeparator();
@@ -220,26 +220,26 @@ class Main extends JFrame {
                 enterM(evt);
             }
         });
-        aDeDom.setText("Acerca de...");
-        sucesos.setText("Sucesos");
+        aDeDom.setText("About");
+        sucesos.setText("Moves");
         sucesos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         sucesos.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
         sucesos.setEnabled(false);
-        verP.setText("Ver puntuacion");
+        verP.setText("Score");
         verP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         verP.setIcon(Media.cIcon("buttons/edit-find-replace.png"));
         verP.setEnabled(false);
-        salir.setText("Salir");
+        salir.setText("Exit");
         salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
         salir.setIcon(Media.cIcon("buttons/salir.png"));
-        nuevoJ.setText("Nuevo juego");
+        nuevoJ.setText("New Game");
         nuevoJ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         nuevoJ.setIcon(Media.cIcon("buttons/reini.png"));
         aDeDom.setIcon(Media.cIcon("cards/wit.png"));
-        juego.setText("Juego");
-        ayuda.setText("Ayuda");
+        juego.setText("Game");
+        ayuda.setText("Help");
         juego.setIcon(Media.cIcon("buttons/system-run.png"));
-        this.setTitle("DOMINO");
+        this.setTitle("Dominoes");
         jMenuBar1.add(juego);
         jMenuBar1.add(ayuda);
         ayuda.add(aDeDom);
@@ -307,7 +307,7 @@ class Main extends JFrame {
     }
 
     public void clicked1(java.awt.event.ActionEvent evt) {
-        int r = JOptionPane.showConfirmDialog(this, "¿Seguro que desea abandonar esta partida?", "Atención", JOptionPane.YES_NO_OPTION);
+        int r = JOptionPane.showConfirmDialog(this, "You want to leave?", "Warning", JOptionPane.YES_NO_OPTION);
         if (r == JOptionPane.YES_OPTION) {
 
             f.Carga(1);
@@ -361,12 +361,12 @@ class Main extends JFrame {
         dialog.setResizable(false);
         dialog.setSize(250, 320);
         tabla.setValueAt(nombreU + "/" + parejaSel, 0, 0);
-        tabla.setValueAt("Maquina-1/Maquina-2", 0, 1);
+        tabla.setValueAt("Machine-1/Machine-2", 0, 1);
         if (tipo == 1) {
             jugDN.setVisible(false);
             salida.setVisible(false);
             OK.setVisible(true);
-            dialog.setTitle("Puntuacion");
+            dialog.setTitle("Score");
             tabla.setValueAt(v1, fil, 0);
             tabla.setValueAt(v2, fil, 1);
             dialog.setVisible(true);
@@ -376,17 +376,17 @@ class Main extends JFrame {
                 jugDN.setVisible(true);
                 salida.setVisible(true);
                 OK.setVisible(false);
-                dialog.setTitle("Juego terminado");
+                dialog.setTitle("Game Over");
                 tabla.setValueAt(v1, fil, 0);
                 tabla.setValueAt(v2, fil, 1);
                 if (v1 > v2) {
-                    tabla.setValueAt("Ganador", fil + 1, 0);
+                    tabla.setValueAt("Winner", fil + 1, 0);
                 } else {
-                    tabla.setValueAt("Ganador", fil + 1, 1);
+                    tabla.setValueAt("Winner", fil + 1, 1);
                 }
                 dialog.setVisible(true);
             } else {
-                dialog.setTitle("Puntuacion");
+                dialog.setTitle("Score");
                 jugDN.setVisible(false);
                 salida.setVisible(false);
                 OK.setVisible(true);
@@ -452,7 +452,7 @@ class Main extends JFrame {
             OK = new javax.swing.JButton("OK");
             KPanel kp = new KPanel();
 
-            this.setTitle("Acerca");
+            this.setTitle("About");
             this.setIconImage(Objects.requireNonNull(Media.cIcon("cards/wit.png")).getImage());
             this.setModal(true);
             this.setSize(300, 150);
@@ -500,7 +500,7 @@ class Main extends JFrame {
                 g.drawImage(present, 0, 0, 150, 130, this);
                 g.setColor(Color.WHITE);
                 g.drawString("DOMINO v1.0 2011", x1, 20);
-                g.drawString("Autor:", x2, 50);
+                g.drawString("Author:", x2, 50);
                 g.drawString("Jose Soto", x3, 80);
                 
             }
@@ -552,7 +552,7 @@ class Main extends JFrame {
         for (int i = 0; i < sucs.size(); i++) {
             sucss[i] = sucs.get(i) + "\n";
         }
-        JOptionPane.showMessageDialog(this, sucss, "Sucesos", JOptionPane.ERROR_MESSAGE, Media.cIcon("buttons/edit-find-replace.png"));
+        JOptionPane.showMessageDialog(this, sucss, "Moves", JOptionPane.ERROR_MESSAGE, Media.cIcon("buttons/edit-find-replace.png"));
 
     }
 

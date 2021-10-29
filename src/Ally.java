@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Ally extends Player {
 
-    private int numero;
+    private final int numero;
 
 
     public Ally(int i) {
@@ -15,8 +15,8 @@ public class Ally extends Player {
 
     public CardPlayer juega() {
 
-        ArrayList<CardPlayer> pci = new ArrayList<CardPlayer>();
-        ArrayList<CardPlayer> pcd = new ArrayList<CardPlayer>();
+        ArrayList<CardPlayer> pci = new ArrayList<>();
+        ArrayList<CardPlayer> pcd = new ArrayList<>();
         int i = 0;
         fj = null;
 
@@ -26,10 +26,8 @@ public class Ally extends Player {
             while (i < 10) {
                 if (data.get(i).getSum() > fj.getFicha().getSum()) {
                     fj = new CardPlayer(data.get(i), 1);
-                    i++;
-                } else {
-                    i++;
                 }
+                i++;
             }
             return fj;
         } else {
@@ -82,10 +80,8 @@ public class Ally extends Player {
             while (j < pci.size()) {
                 if (!mataI()) {
                     fj = pci.get(j);
-                    j++;
-                } else {
-                    j++;
                 }
+                j++;
             }
         }
 
@@ -95,10 +91,8 @@ public class Ally extends Player {
                 while (j < pcd.size()) {
                     if (!mataD()) {
                         fj = pcd.get(j);
-                        j++;
-                    } else {
-                        j++;
                     }
+                    j++;
                 }
 
             }
@@ -112,10 +106,8 @@ public class Ally extends Player {
             while (j < pci.size()) {
                 if ( !fallaI(pci.get(j).getFicha())) {
                     fj = pci.get(j);
-                    j++;
-                } else {
-                    j++;
                 }
+                j++;
             }
         }
 
@@ -137,11 +129,11 @@ public class Ally extends Player {
 
             return fj;
         } else {
-            if (fj == null && (pci.size() != 0)) {
+            if (pci.size() != 0) {
 
                 return pci.get(0);
             } else {
-                if (fj == null && (pcd.size() != 0)) {
+                if (pcd.size() != 0) {
 
                     return pcd.get(0);
                 } else {
@@ -153,37 +145,17 @@ public class Ally extends Player {
 
     private boolean mataI() {
         if (numero == 1) {
-            if (3 == Table.getUltCI()) {
-                return true;
-            } else {
-                return false;
-            }
+            return 3 == Table.getUltCI();
         } else {
-            if ((numero - 2 == Table.getUltCI())) {
-
-                return true;
-            } else {
-
-                return false;
-            }
+            return numero - 2 == Table.getUltCI();
         }
     }
 
     private boolean mataD() {
         if (numero == 1) {
-            if (3 == Table.getUltCD()) {
-                return true;
-            } else {
-                return false;
-            }
+            return 3 == Table.getUltCD();
         } else {
-            if ((numero - 2 == Table.getUltCD())) {
-
-                return true;
-            } else {
-
-                return false;
-            }
+            return numero - 2 == Table.getUltCD();
         }
     }
 
@@ -253,6 +225,6 @@ public class Ally extends Player {
 
     @Override
     public String toString() {
-        return "Aliado";
+        return "Ally";
     }
 }

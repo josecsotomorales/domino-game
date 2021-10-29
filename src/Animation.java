@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,8 +32,12 @@ public class Animation extends JPanel {
     static int dirI = 1, dirD = 1;
     static int cabezaD, cabezaI, cantPases;
     private int punt, xnomU, xparSel, xPase, yM, puntU = 0, puntM = 0, datas = 0;
-    private String nombreU, parejaSel, maquina1, maquina2, pase = "SE PASO ", compl = "";
-    private Media media = new Media();
+    private String nombreU;
+    private String parejaSel;
+    private String maquina1;
+    private String maquina2;
+    private String compl = "";
+    private final Media media = new Media();
     private Table mesaJ;
     private int[] lind;
     private int ind, pxg, pyg;
@@ -57,15 +62,15 @@ public class Animation extends JPanel {
     static ArrayList<Card> cD;
     static ArrayList<Card> cI;
     private static Card[] sobra;
-    private Color color;
+    private final Color color;
 
     public Animation() {
         setSize(800, 600);
         setBackground(Color.BLACK);
-        config = media.cIcon("parts/config.png").getImage();
-        present = media.cIcon("parts/present.jpg").getImage();
-        mesa = media.cIcon("parts/mesa.png").getImage();
-        tabla1 = media.cIcon("parts/tabla1.gif").getImage();
+        config = Objects.requireNonNull(Media.cIcon("parts/config.png")).getImage();
+        present = Objects.requireNonNull(Media.cIcon("parts/present.jpg")).getImage();
+        mesa = Objects.requireNonNull(Media.cIcon("parts/mesa.png")).getImage();
+        tabla1 = Objects.requireNonNull(Media.cIcon("parts/tabla1.gif")).getImage();
         color = new Color(0, 0, 10, 190);
         Carga(1);
 
@@ -167,13 +172,13 @@ public class Animation extends JPanel {
         cI = new ArrayList<Card>();
         cD = new ArrayList<Card>();
         mesaJ = new Table();
-        mesaJ.creaPareja(i);
+        Table.creaPareja(i);
         mesaJ.daAgua();
         mesaJ.repartir();
-        fich = mesaJ.getPu().getU().getFichas();
-        fichA = mesaJ.getPu().getA().getFichas();
-        fichJ1 = mesaJ.getPm().getJ1().getFichas();
-        fichJ2 = mesaJ.getPm().getJ2().getFichas();
+        fich = Team.getU().getFichas();
+        fichA = Team.getA().getFichas();
+        fichJ1 = Team.getJ1().getFichas();
+        fichJ2 = Team.getJ2().getFichas();
         sobra = mesaJ.getTf();
         nombreU = "";
         parejaSel = "";
@@ -245,9 +250,9 @@ public class Animation extends JPanel {
     public void dibujaMesa(int oc) {
 
         nombreU = Main.nombreU;
-        parejaSel = Table.getPu().getA().toString();
-        maquina1 = "M1" + Table.getPm().getJ2().toString().substring(0, 3);
-        maquina2 = "M2" + Table.getPm().getJ1().toString().substring(0, 3);
+        parejaSel = Team.getA().toString();
+        maquina1 = "M1" + Team.getJ2().toString().substring(0, 3);
+        maquina2 = "M2" + Team.getJ1().toString().substring(0, 3);
         punt = Main.punt;
         ypr = 600;
         repaint();
@@ -325,17 +330,17 @@ public class Animation extends JPanel {
         mesaJ = new Table();
         mesaJ.daAgua();
         mesaJ.repartir();
-        fich = mesaJ.getPu().getU().getFichas();
-        fichA = mesaJ.getPu().getA().getFichas();
-        fichJ1 = mesaJ.getPm().getJ1().getFichas();
-        fichJ2 = mesaJ.getPm().getJ2().getFichas();
-        cI = new ArrayList<Card>();
-        cD = new ArrayList<Card>();
+        fich = Team.getU().getFichas();
+        fichA = Team.getA().getFichas();
+        fichJ1 = Team.getJ1().getFichas();
+        fichJ2 = Team.getJ2().getFichas();
+        cI = new ArrayList<>();
+        cD = new ArrayList<>();
 
     }
 
     public void dibujaFichas() {
-        sucs = new ArrayList<String>();
+        sucs = new ArrayList<>();
         for (int i = 0; i < fich.size(); i++) {
             fich.get(i).setPy(600);
             fichA.get(i).setPy(-60);
@@ -375,7 +380,7 @@ public class Animation extends JPanel {
             if (turn == 1) {
                 media.PlayAudio(2);
                 JOptionPane pane = new JOptionPane();
-                int op = pane.showConfirmDialog(this, "¿Desea salir usted?", "¿Que desea hacer?", JOptionPane.YES_NO_OPTION);
+                int op = JOptionPane.showConfirmDialog(this, "Want to start?", "Start Game", JOptionPane.YES_NO_OPTION);
                 if (op == JOptionPane.YES_OPTION) {
                     turn = 1;
                 } else {
@@ -396,7 +401,7 @@ public class Animation extends JPanel {
         if (turn == 1) {
             media.PlayAudio(2);
             JOptionPane pane = new JOptionPane();
-            int op = pane.showConfirmDialog(this, "¿Desea salir usted?", "¿Que desea hacer?", JOptionPane.YES_NO_OPTION);
+            int op = JOptionPane.showConfirmDialog(this, "Want to start?", "Start Game", JOptionPane.YES_NO_OPTION);
 
             if (op == JOptionPane.YES_OPTION) {
                 turn = 1;
@@ -410,7 +415,7 @@ public class Animation extends JPanel {
 
     public void juegaU() {
 
-        if (Table.getPu().getU().lleva()) {
+        if (Team.getU().lleva()) {
             cantPases = 0;
             doWindowEvt();
             Main.abilita(0);
@@ -422,23 +427,23 @@ public class Animation extends JPanel {
             Table.setPasesU(cabezaD, cabezaI);
             repaint();
             try {
-                Thread.currentThread().sleep(900);
+                Thread.sleep(900);
             } catch (InterruptedException ex) {
             }
             xPase = 850;
             repaint();
             try {
-                Thread.currentThread().sleep(400);
+                Thread.sleep(400);
             } catch (InterruptedException ex) {
             }
-            sucs.add("Usted se pasó a: " + cabezaD + " y " + cabezaI);
+            sucs.add("You passed: " + cabezaD + " and " + cabezaI);
             Organizador t = new Organizador();
             t.start();
         }
     }
 
     public void juega1() {
-        CardPlayer f = Table.getPm().getJ2().juega();
+        CardPlayer f = Team.getJ2().juega();
         if (f != null) {
 
             cantPases = 0;
@@ -473,7 +478,7 @@ public class Animation extends JPanel {
                     an.start();
                 }
             }
-            sucs.add(maquina1 + " jugó: " + f.getFicha().toString());
+            sucs.add(maquina1 + " played: " + f.getFicha().toString());
         } else {
             turn = 3;
             cantPases += 1;
@@ -482,13 +487,13 @@ public class Animation extends JPanel {
             Table.setPases2(cabezaD, cabezaI);
             repaint();
             try {
-                Thread.currentThread().sleep(900);
+                Thread.sleep(900);
             } catch (InterruptedException ex) {
             }
             xPase = 850;
             repaint();
             try {
-                Thread.currentThread().sleep(200);
+                Thread.sleep(200);
             } catch (InterruptedException ex) {
             }
             sucs.add(maquina1 + " se pasó a: " + cabezaD + " y " + cabezaI);
@@ -500,7 +505,7 @@ public class Animation extends JPanel {
     }
 
     public void juega2() {
-        CardPlayer f = Table.getPu().getA().juega();
+        CardPlayer f = Team.getA().juega();
         if (f != null) {
 
             cantPases = 0;
@@ -535,7 +540,7 @@ public class Animation extends JPanel {
                     an.start();
                 }
             }
-            sucs.add(parejaSel + " jugó: " + f.getFicha().toString());
+            sucs.add(parejaSel + " played: " + f.getFicha().toString());
         } else {
             turn = 4;
             cantPases += 1;
@@ -544,13 +549,13 @@ public class Animation extends JPanel {
             Table.setPasesA(cabezaD, cabezaI);
             repaint();
             try {
-                Thread.currentThread().sleep(900);
+                Thread.sleep(900);
             } catch (InterruptedException ex) {
             }
             xPase = 850;
             repaint();
             try {
-                Thread.currentThread().sleep(400);
+                Thread.sleep(400);
             } catch (InterruptedException ex) {
             }
             sucs.add(parejaSel + " se pasó a: " + cabezaD + " y " + cabezaI);
@@ -560,7 +565,7 @@ public class Animation extends JPanel {
     }
 
     public void juega3() {
-        CardPlayer f = Table.getPm().getJ1().juega();
+        CardPlayer f = Team.getJ1().juega();
         if (f != null) {
 
             cantPases = 0;
@@ -595,7 +600,7 @@ public class Animation extends JPanel {
                     an.start();
                 }
             }
-            sucs.add(maquina2 + " jugó: " + f.getFicha().toString());
+            sucs.add(maquina2 + " played: " + f.getFicha().toString());
         } else {
             turn = 1;
             cantPases += 1;
@@ -604,16 +609,16 @@ public class Animation extends JPanel {
             Table.setPases1(cabezaD, cabezaI);
             repaint();
             try {
-                Thread.currentThread().sleep(900);
+                Thread.sleep(900);
             } catch (InterruptedException ex) {
             }
             xPase = 850;
             repaint();
             try {
-                Thread.currentThread().sleep(400);
+                Thread.sleep(400);
             } catch (InterruptedException ex) {
             }
-            sucs.add(maquina2 + " se pasó a: " + cabezaD + " y " + cabezaI);
+            sucs.add(maquina2 + " passed: " + cabezaD + " and " + cabezaI);
             Organizador t = new Organizador();
             t.start();
         }
@@ -746,6 +751,7 @@ public class Animation extends JPanel {
         g2.setColor(new Color(255, 0, 0, 200));
         g2.fillRoundRect(xPase - 5, 283, 450, 60, 12, 12);
         g2.setColor(Color.YELLOW);
+        String pase = "PASS ";
         g2.drawString(pase + compl, xPase, 330);
 
         g.drawImage(I, 0, 0, this);
@@ -1091,8 +1097,8 @@ public class Animation extends JPanel {
 
     public void colocaFichaI() {
 
+        Card h = cI.get(cI.size() - 1);
         if (cI.size() == 1) {
-            Card h = cI.get(cI.size() - 1);
             if (h.isDoble() && (h.getOrient() == 'v' || h.getOrient() == 'a')) {
 
                 h.setPx(Table.x);
@@ -1134,7 +1140,6 @@ public class Animation extends JPanel {
             }
 
         } else {
-            Card h = cI.get(cI.size() - 1);
             Card h2 = cI.get(cI.size() - 2);
 
             if (Table.xc1 + 75 < dTop && dirI == 1) {
@@ -1153,7 +1158,6 @@ public class Animation extends JPanel {
                     h.setPx(Table.x + 60);
                     h.setPy(Table.y);
                     Table.x += 60;
-                    Table.y += 0;
                     Table.xc1 = h.getPx() + 60;
                     Table.yc1 = h.getPy() - 25;
                     h.setOrient(mOrientD(h, "horE"));
@@ -1186,7 +1190,6 @@ public class Animation extends JPanel {
                     h.setPx(Table.x + 60);
                     h.setPy(Table.y);
                     Table.x += 60;
-                    Table.y -= 0;
                     Table.xc1 = h.getPx() + 60;
                     Table.yc1 = h.getPy() - 25;
                     h.setOrient(mOrientD(h, "horE"));
@@ -1964,12 +1967,12 @@ public class Animation extends JPanel {
     public void muestraPunt() {
         media.PlayAudio(2);
         if ((haDominado(fich) || haDominado(fichA)) && cantPases < 4) {
-            puntU += Table.getPm().getJ1().cuenta() + Table.getPm().getJ2().cuenta();
+            puntU += Team.getJ1().cuenta() + Team.getJ2().cuenta();
             datas += 1;
             turn = 1;
         } else {
             if ((haDominado(fichJ1) || haDominado(fichJ2)) && cantPases < 4) {
-                puntM += Table.getPu().getU().cuenta() + Table.getPu().getA().cuenta();
+                puntM += Team.getU().cuenta() + Team.getA().cuenta();
                 datas += 1;
                 Random ra = new Random();
                 int w = ra.nextInt(4);
@@ -1982,13 +1985,13 @@ public class Animation extends JPanel {
             } else {
                 if (!haDominado(fich) && !haDominado(fichA) && !haDominado(fichJ1) && !haDominado(fichJ2) && cantPases >= 4) {
 
-                    int pm1 = Table.getPm().getJ1().cuenta();
+                    int pm1 = Team.getJ1().cuenta();
 
-                    int pm2 = Table.getPm().getJ2().cuenta();
+                    int pm2 = Team.getJ2().cuenta();
 
-                    int pu = Table.getPu().getU().cuenta();
+                    int pu = Team.getU().cuenta();
 
-                    int puA = Table.getPu().getA().cuenta();
+                    int puA = Team.getA().cuenta();
 
                     if ((pm1 < pu && pm1 < puA) || (pm2 < pu && pm2 < puA)) {
 
@@ -2015,16 +2018,16 @@ public class Animation extends JPanel {
             }
         }
         if (puntU >= punt || puntM >= punt) {
-            Table.getPu().getA().virarse('c');
-            Table.getPm().getJ1().virarse('m');
-            Table.getPm().getJ2().virarse('m');
+            Team.getA().virarse('c');
+            Team.getJ1().virarse('m');
+            Team.getJ2().virarse('m');
             repaint();
             Main.muestraPunt(2, puntU, puntM, datas);
             Main.abilita(1);
         } else {
-            Table.getPu().getA().virarse('c');
-            Table.getPm().getJ1().virarse('m');
-            Table.getPm().getJ2().virarse('m');
+            Team.getA().virarse('c');
+            Team.getJ1().virarse('m');
+            Team.getJ2().virarse('m');
             repaint();
             Main.muestraPunt(1, puntU, puntM, datas);
             cargaParcial();
@@ -2033,7 +2036,7 @@ public class Animation extends JPanel {
         }
     }
 
-    class ParImpar extends javax.swing.JDialog {
+    static class ParImpar extends javax.swing.JDialog {
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int w = (int) (pantalla.getWidth());
@@ -2046,21 +2049,20 @@ public class Animation extends JPanel {
         private Card f;
 
         public ParImpar() {
-            diseño();
+            design();
         }
 
-        public void diseño() {
+        public void design() {
             Random ra = new Random();
             pa = new Comp();
             paim = new javax.swing.JLabel("");
-            par = new javax.swing.JButton("par");
-            impar = new javax.swing.JButton("impar");
+            par = new javax.swing.JButton("even");
+            impar = new javax.swing.JButton("odd");
             OK = new javax.swing.JButton("OK");
             OK.setVisible(false);
             f = Animation.getSobra()[ra.nextInt(15)];
             f.setOrient('a');
             par.addActionListener(new java.awt.event.ActionListener() {
-
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     clicked1(evt);
                 }
@@ -2079,7 +2081,7 @@ public class Animation extends JPanel {
             });
             this.setModal(true);
             this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
-            this.setTitle("¿Par o Impar?");
+            this.setTitle("Even or Odd?");
             this.setResizable(false);
             this.setSize(200, 200);
             this.setLocation((w - 200) / 2, (h - 200) / 2);
@@ -2112,10 +2114,10 @@ public class Animation extends JPanel {
             }
             pa.repaint();
             if (f.getSum() % 2 == 0) {
-                paim.setText("¡Acertaste es par, comience Ud!");
+                paim.setText("Guessed, card is even, you can start!");
                 Animation.turn = 1;
             } else {
-                paim.setText("¡Fallaste es impar, comienza la máquina!");
+                paim.setText("Failed, card is odd, machine starts!");
                 Random ra = new Random();
                 int w = ra.nextInt(4);
                 if (w < 2) {
@@ -2138,7 +2140,7 @@ public class Animation extends JPanel {
             }
             pa.repaint();
             if (f.getSum() % 2 == 0) {
-                paim.setText("¡Fallaste es par, comienza la máquina!");
+                paim.setText("Failed, card is even, machine starts!");
                 Random ra = new Random();
                 int w = ra.nextInt(4);
                 if (w < 2) {
@@ -2148,7 +2150,7 @@ public class Animation extends JPanel {
 
                 }
             } else {
-                paim.setText("¡Acertaste es impar, comience Ud!");
+                paim.setText("Guessed, card is odd, you can start!");
                 Animation.turn = 1;
             }
             par.setVisible(false);
